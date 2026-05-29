@@ -12,8 +12,48 @@ import CursorSparkle from "@/components/CursorSparkle";
 import RippleEffect from "@/components/RippleEffect";
 
 export const metadata: Metadata = {
-  title: "Chen Mingtao",
-  description: "Developer-focused personal website",
+  title: {
+    default: "Chen Mingtao",
+    template: "%s | Chen Mingtao",
+  },
+  description: "Developer-focused personal website. Full-stack developer specializing in modern web technologies.",
+  keywords: ["developer", "full-stack", "web development", "Next.js", "TypeScript", "React"],
+  authors: [{ name: "Chen Mingtao" }],
+  creator: "Chen Mingtao",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://chenmingtao.com",
+    siteName: "Chen Mingtao",
+    title: "Chen Mingtao",
+    description: "Developer-focused personal website. Full-stack developer specializing in modern web technologies.",
+    images: [
+      {
+        url: "/og-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "Chen Mingtao - Full-stack Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chen Mingtao",
+    description: "Developer-focused personal website. Full-stack developer specializing in modern web technologies.",
+    images: ["/og-image.svg"],
+    creator: "@chenmingtao",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -46,6 +86,30 @@ export default function RootLayout({
                 } catch (e) {}
               })();
             `,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Chen Mingtao",
+              "url": "https://chenmingtao.com",
+              "jobTitle": "Full-stack Developer",
+              "description": "Developer-focused personal website. Full-stack developer specializing in modern web technologies.",
+              "sameAs": [
+                "https://github.com/ccmtt",
+                "https://twitter.com/chenmingtao"
+              ],
+              "knowsAbout": [
+                "Next.js",
+                "TypeScript",
+                "React",
+                "Node.js",
+                "Web Development"
+              ]
+            }),
           }}
         />
       </head>

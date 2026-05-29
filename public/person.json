@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Chen Mingtao",
+  "url": "https://chenmingtao.com",
+  "jobTitle": "Full-stack Developer",
+  "description": "Developer-focused personal website. Full-stack developer specializing in modern web technologies.",
+  "sameAs": [
+    "https://github.com/ccmtt",
+    "https://twitter.com/chenmingtao"
+  ],
+  "knowsAbout": [
+    "Next.js",
+    "TypeScript",
+    "React",
+    "Node.js",
+    "Web Development"
+  ]
+}

@@ -2,15 +2,13 @@
 
 import { useEffect, useState, useMemo } from "react";
 
-interface Shape {
+interface Blob {
   id: number;
   x: number;
   y: number;
   size: number;
-  duration: number;
-  delay: number;
-  type: "circle" | "square";
   color: string;
+  blur: string;
 }
 
 export default function GeometricBackground() {
@@ -18,16 +16,20 @@ export default function GeometricBackground() {
   const [scrollY, setScrollY] = useState(0);
   const [isDark, setIsDark] = useState(true);
 
-  const shapes = useMemo<Shape[]>(() => {
-    return Array.from({ length: 6 }, (_, i) => ({
+  const blobs = useMemo<Blob[]>(() => [
+    { id: 0, x: -10, y: -10, size: 500, color: "#3b82f6", blur: "150px" },
+    { id: 1, x: 60, y: 20, size: 400, color: "#8b5cf6", blur: "120px" },
+    { id: 2, x: 20, y: 60, size: 350, color: "#06b6d4", blur: "100px" },
+    { id: 3, x: 70, y: 70, size: 300, color: "#ec4899", blur: "100px" },
+  ], []);
+
+  const dots = useMemo(() => {
+    return Array.from({ length: 30 }, (_, i) => ({
       id: i,
-      x: 10 + Math.random() * 80,
-      y: 10 + Math.random() * 80,
-      size: 60 + Math.random() * 120,
-      duration: 20 + Math.random() * 15,
-      delay: Math.random() * 10,
-      type: i % 2 === 0 ? "circle" : "square",
-      color: ["#3b82f6", "#8b5cf6", "#06b6d4", "#ec4899", "#10b981", "#f59e0b"][i],
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 8 + 4,
+      opacity: Math.random() * 0.15 + 0.05,
     }));
   }, []);
 
@@ -54,66 +56,54 @@ export default function GeometricBackground() {
   if (!mounted) return null;
 
   if (!isDark) {
-    // Light mode - creative textured
+    // Light mode - colorful gradient blobs
     return (
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50/20" />
+        {/* Colorful gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50/80 to-purple-50/60" />
 
-        {/* Floating geometric shapes - subtle and elegant */}
-        {shapes.map((shape) => (
+        {/* Large colored blobs */}
+        {blobs.map((blob) => (
           <div
-            key={shape.id}
-            className="absolute opacity-[0.06]"
+            key={blob.id}
+            className="absolute rounded-full"
             style={{
-              left: `${shape.x}%`,
-              top: `${shape.y}%`,
-              transform: `translateY(${scrollY * 0.05 * (shape.id % 3 + 1)}px)`,
-              animation: `float-${shape.id} ${shape.duration}s ease-in-out infinite`,
-              animationDelay: `${shape.delay}s`,
+              left: `${blob.x}%`,
+              top: `${blob.y}%`,
+              width: blob.size,
+              height: blob.size,
+              background: `radial-gradient(circle at center, ${blob.color}30 0%, ${blob.color}10 40%, transparent 70%)`,
+              filter: `blur(${blob.blur})`,
+              transform: `translateY(${scrollY * (0.02 + blob.id * 0.01)}px)`,
             }}
-          >
-            {shape.type === "circle" ? (
-              <div
-                className="rounded-full"
-                style={{
-                  width: shape.size,
-                  height: shape.size,
-                  background: `linear-gradient(135deg, ${shape.color}20, ${shape.color}05)`,
-                  border: `1px solid ${shape.color}15`,
-                }}
-              />
-            ) : (
-              <div
-                style={{
-                  width: shape.size * 0.8,
-                  height: shape.size * 0.8,
-                  background: `linear-gradient(135deg, ${shape.color}10, ${shape.color}05)`,
-                  border: `1px solid ${shape.color}15`,
-                  transform: "rotate(15deg)",
-                }}
-              />
-            )}
-          </div>
+          />
         ))}
 
-        {/* Subtle dot grid */}
+        {/* Decorative dots */}
+        {dots.map((dot) => (
+          <div
+            key={dot.id}
+            className="absolute rounded-full"
+            style={{
+              left: `${dot.x}%`,
+              top: `${dot.y}%`,
+              width: dot.size,
+              height: dot.size,
+              background: `linear-gradient(135deg, #3b82f6, #8b5cf6)`,
+              opacity: dot.opacity,
+              transform: `translateY(${scrollY * 0.03}px)`,
+            }}
+          />
+        ))}
+
+        {/* Soft grid overlay */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #64748b 1px, transparent 0)`,
-          backgroundSize: "40px 40px",
+          backgroundImage: `
+            linear-gradient(#3b82f6 1px, transparent 1px),
+            linear-gradient(90deg, #3b82f6 1px, transparent 1px)
+          `,
+          backgroundSize: "60px 60px",
         }} />
-
-        {/* Soft gradient orbs */}
-        <div className="absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-blue-100/40 to-purple-100/30 blur-[80px]" />
-        <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full bg-gradient-to-tr from-cyan-100/40 to-blue-100/30 blur-[60px]" />
-
-        <style jsx>{`
-          ${shapes.map((shape) => `
-            @keyframes float-${shape.id} {
-              0%, 100% { transform: translateY(${scrollY * 0.05 * (shape.id % 3 + 1)}px) rotate(0deg); }
-              50% { transform: translateY(${scrollY * 0.05 * (shape.id % 3 + 1) - 15}px) rotate(5deg); }
-            }
-          `).join("")}
-        `}</style>
       </div>
     );
   }
@@ -146,7 +136,7 @@ export default function GeometricBackground() {
       />
 
       {/* Stars */}
-      {Array.from({ length: 50 }, (_, i) => (
+      {Array.from({ length: 60 }, (_, i) => (
         <div
           key={`star-${i}`}
           className="absolute rounded-full bg-white"
@@ -155,7 +145,7 @@ export default function GeometricBackground() {
             top: `${Math.random() * 100}%`,
             width: Math.random() * 2 + 1,
             height: Math.random() * 2 + 1,
-            opacity: Math.random() * 0.4 + 0.2,
+            opacity: Math.random() * 0.5 + 0.2,
             animation: `twinkle-${i} ${2 + Math.random() * 3}s ease-in-out infinite`,
             animationDelay: `${Math.random() * 5}s`,
           }}
@@ -163,13 +153,12 @@ export default function GeometricBackground() {
       ))}
 
       <div className="absolute top-1/4 left-1/4 w-32 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent rotate-45" />
-      <div className="absolute top-1/3 right-1/3 w-24 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent -rotate-30" />
 
       <style jsx>{`
-        ${Array.from({ length: 50 }, (_, i) => `
+        ${Array.from({ length: 60 }, (_, i) => `
           @keyframes twinkle-${i} {
-            0%, 100% { opacity: ${Math.random() * 0.4 + 0.2}; transform: scale(1); }
-            50% { opacity: ${(Math.random() * 0.4 + 0.2) * 0.3}; transform: scale(0.8); }
+            0%, 100% { opacity: ${Math.random() * 0.5 + 0.2}; transform: scale(1); }
+            50% { opacity: ${(Math.random() * 0.5 + 0.2) * 0.3}; transform: scale(0.8); }
           }
         `).join("")}
       `}</style>

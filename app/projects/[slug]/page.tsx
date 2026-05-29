@@ -1,107 +1,100 @@
-import Link from "next/link";
+import { getProjectBySlug, getProjectSlugs } from "@/lib/markdown";
 import { notFound } from "next/navigation";
-
-const projectData: Record<
-  string,
-  {
-    title: string;
-    description: string;
-    content: string;
-    tech: string[];
-    status: string;
-  }
-> = {
-  "personal-site": {
-    title: "Personal Website",
-    description: "This site itself - built with Next.js and Tailwind CSS",
-    content: `This is my personal website built with Next.js 16, React 19, and Tailwind CSS.
-
-## Goals
-
-- Serve as a developer-focused personal site
-- Showcase my projects and writing
-- Provide a way to get in touch
-
-## Tech Stack
-
-- **Framework**: Next.js 16 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Deployment**: Vercel (planned)`,
-    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-    status: "In Progress",
-  },
-};
+import { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return Object.keys(projectData).map((slug) => ({ slug }));
+  const slugs = getProjectSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = projectData[slug];
-  if (!project) return { title: "Project Not Found" };
+  const project = getProjectBySlug(slug);
+
+  if (!project) {
+    return { title: "Project Not Found" };
+  }
+
   return {
-    title: `${project.title} - Chen Mingtao`,
-    description: project.description,
+    title: `${project.data.title} - Chen Mingtao`,
+    description: project.data.description,
   };
 }
 
-export default async function ProjectDetail({ params }: PageProps) {
+export default async function ProjectPage({ params }: PageProps) {
   const { slug } = await params;
-  const project = projectData[slug];
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     notFound();
   }
 
+  const { data, content } = project;
+
   return (
-    <div className="max-w-2xl mx-auto p-8">
-      <Link
-        href="/projects"
-        className="text-sm text-blue-600 hover:underline mb-6 inline-block"
-      >
-        ← Back to Projects
-      </Link>
+    <div className="relative overflow-hidden">
+      <div className="max-w-2xl mx-auto px-4 py-12 sm:py-16 relative z-10">
+        {/* Back button */}
+        <a
+          href="/projects"
+          className="inline-flex items-center text-sm text-gray-500 dark:text-white/50 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors mb-8"
+        >
+          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Projects
+        </a>
 
-      <article>
-        <div className="flex items-start justify-between mb-4">
-          <h1 className="text-3xl font-bold">{project.title}</h1>
-          <span className="text-xs px-2 py-1 rounded bg-blue-100 text-blue-700">
-            {project.status}
-          </span>
-        </div>
-
-        <p className="text-gray-600 mb-6">{project.description}</p>
-
+        {/* Project Header */}
         <div className="mb-8">
-          <h2 className="text-sm font-semibold text-gray-500 mb-2">
-            Technologies
-          </h2>
-          <div className="flex gap-2">
-            {project.tech.map((t) => (
+          <div className="flex items-center gap-3 mb-4 flex-wrap">
+            <span className="text-xs px-3 py-1 rounded-full bg-green-100 dark:bg-cyan-500/20 text-green-700 dark:text-cyan-300 border border-green-200 dark:border-cyan-500/30 font-medium">
+              {data.status}
+            </span>
+            <span className="text-xs text-gray-400 dark:text-white/40">{data.year}</span>
+          </div>
+
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+            {data.title}
+          </h1>
+
+          <p className="text-lg text-gray-600 dark:text-white/60">
+            {data.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2 mt-6">
+            {data.tags.map((tag) => (
               <span
-                key={t}
-                className="text-xs px-2 py-1 rounded bg-gray-100 text-gray-600"
+                key={tag}
+                className="text-xs px-3 py-1.5 rounded-md bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-white/50 border border-gray-200 dark:border-white/10 font-mono"
               >
-                {t}
+                {tag}
               </span>
             ))}
           </div>
         </div>
 
-        <div className="prose prose-gray">
-          {project.content.split("\n\n").map((paragraph, i) => (
-            <p key={i} className="text-gray-700 mb-4">
-              {paragraph}
-            </p>
+        {/* Project Content - rendered as simple text for now */}
+        <div className="prose prose-lg dark:prose-invert max-w-none
+          prose-headings:text-gray-900 dark:prose-headings:text-white
+          prose-p:text-gray-600 dark:prose-p:text-gray-300
+          prose-a:text-blue-600 dark:prose-a:text-cyan-400
+          prose-strong:text-gray-800 dark:prose-strong:text-white
+          prose-code:text-purple-600 dark:prose-code:text-purple-400
+          prose-code:bg-gray-100 dark:prose-code:bg-white/10
+          prose-code:px-2 prose-code:py-1 prose-code:rounded
+          prose-pre:bg-gray-900 dark:prose-pre:bg-gray-800
+          prose-pre:text-gray-100
+        ">
+          {content.split('\n\n').map((paragraph, i) => (
+            <p key={i} className="mb-4">{paragraph}</p>
           ))}
         </div>
-      </article>
+      </div>
     </div>
   );
 }

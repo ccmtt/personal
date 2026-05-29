@@ -3,7 +3,14 @@
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { useLocale } from "@/i18n/LocaleContext";
-import { BlobShape, DotsCluster, PlusSigns, Mountains } from "@/components/HandDrawn";
+import {
+  LargeBlob,
+  DotsCluster,
+  PlusSigns,
+  CircleDecor,
+  StarDecor,
+  HashMarks,
+} from "@/components/HandDrawn";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -30,12 +37,21 @@ export default function Home() {
     <div className="relative overflow-hidden">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Decorative elements */}
-        <BlobShape className="absolute -top-20 -right-20 w-[400px] h-[400px] opacity-60 dark:opacity-30 animate-pulse" />
-        <BlobShape className="absolute -bottom-40 -left-40 w-[500px] h-[500px] opacity-40 dark:opacity-20" />
-        <DotsCluster className="absolute top-1/4 left-[5%] w-24 h-24 opacity-60 dark:opacity-40" />
-        <PlusSigns className="absolute bottom-1/4 right-[8%] w-20 h-20 opacity-50" />
-        <Mountains className="absolute bottom-0 left-0 right-0 h-32 opacity-30" />
+        {/* Large background decorations - clearly visible */}
+        <LargeBlob className="absolute -top-40 -right-40 w-[600px] h-[600px] animate-spin-slow opacity-40 dark:opacity-25" style={{ animationDuration: "30s" }} />
+        <LargeBlob className="absolute -bottom-60 -left-60 w-[700px] h-[700px] opacity-30 dark:opacity-20" style={{ animationDuration: "25s", animationDirection: "reverse" }} />
+
+        {/* Side decorations */}
+        <CircleDecor className="absolute top-20 left-[5%] w-32 h-32 opacity-70 dark:opacity-50 animate-float" />
+        <CircleDecor className="absolute bottom-40 right-[8%] w-24 h-24 opacity-60 dark:opacity-40" />
+        <DotsCluster className="absolute top-1/3 right-[5%] w-36 h-36 opacity-80 dark:opacity-60" />
+        <DotsCluster className="absolute bottom-1/4 left-[3%] w-28 h-28 opacity-70 dark:opacity-50" />
+
+        {/* Top and bottom decorations */}
+        <PlusSigns className="absolute top-[15%] left-1/2 -translate-x-1/2 w-16 h-16 opacity-60" />
+        <PlusSigns className="absolute bottom-[20%] right-[15%] w-12 h-12 opacity-50" />
+        <HashMarks className="absolute top-[25%] right-[12%] w-16 h-6 opacity-50" />
+        <HashMarks className="absolute bottom-[30%] left-[10%] w-14 h-5 opacity-50" />
 
         <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
           <motion.div
@@ -44,18 +60,26 @@ export default function Home() {
             animate="visible"
             variants={containerVariants}
           >
-            {/* Avatar with decorative ring */}
+            {/* Avatar with multiple decorative layers */}
             <motion.div variants={itemVariants} className="flex justify-center">
               <div className="relative">
-                {/* Outer decorative ring */}
-                <div className="absolute inset-0 rounded-full border-2 border-dashed border-blue-300/30 dark:border-cyan-400/20" style={{ transform: "scale(1.4)" }} />
-                {/* Glow rings */}
-                <div className="absolute inset-0 rounded-full border border-cyan-400/20 dark:border-cyan-400/20 animate-ping" style={{ transform: "scale(1.25)", animationDuration: "3s" }} />
-                <div className="absolute inset-0 rounded-full border border-purple-400/15 dark:border-purple-400/15" style={{ transform: "scale(1.5)", animationDuration: "4s" }} />
+                {/* Outer decorative rings */}
+                <div className="absolute inset-0 rounded-full border-[3px] border-dashed border-blue-400/50 dark:border-cyan-400/40" style={{ transform: "scale(1.5)" }} />
+                <div className="absolute inset-0 rounded-full border-[2px] border-purple-400/40 dark:border-purple-400/30" style={{ transform: "scale(1.8)" }} />
+
+                {/* Background glow effect */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 dark:from-cyan-500/20 dark:to-purple-500/20 blur-xl" />
+
                 {/* Avatar circle */}
-                <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 flex items-center justify-center text-white text-2xl font-bold shadow-xl">
+                <div className="relative w-28 h-28 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 flex items-center justify-center text-white text-2xl font-bold shadow-2xl">
                   CMT
                 </div>
+
+                {/* Floating stars around avatar */}
+                <StarDecor className="absolute -top-2 -left-2 w-6 h-6 animate-pulse" />
+                <StarDecor className="absolute -top-2 -right-2 w-5 h-5 animate-pulse" style={{ animationDelay: "0.5s" }} />
+                <StarDecor className="absolute -bottom-2 -left-2 w-4 h-4 animate-pulse" style={{ animationDelay: "1s" }} />
+                <StarDecor className="absolute -bottom-2 -right-2 w-5 h-5 animate-pulse" style={{ animationDelay: "1.5s" }} />
               </div>
             </motion.div>
 
@@ -114,7 +138,6 @@ export default function Home() {
 
       {/* Projects Section */}
       <section className="py-24 px-4 bg-gray-50/50 dark:bg-transparent relative">
-        <BlobShape className="absolute top-0 left-0 w-64 h-64 opacity-30 dark:opacity-20 -rotate-12" />
         <div className="max-w-2xl mx-auto relative">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-sm font-medium uppercase tracking-widest text-gray-400 dark:text-white/40 mb-10 text-center">
@@ -166,7 +189,6 @@ export default function Home() {
 
       {/* Recent Writing Section */}
       <section className="py-24 px-4 relative">
-        <DotsCluster className="absolute top-10 right-[5%] w-32 h-32 opacity-50" />
         <div className="max-w-2xl mx-auto">
           <motion.div className="flex items-center justify-between mb-10" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-sm font-medium uppercase tracking-widest text-gray-400 dark:text-white/40">Recent Writing</h2>
@@ -200,18 +222,24 @@ export default function Home() {
 
       {/* Contact CTA Section */}
       <section className="py-24 px-4 relative">
-        <PlusSigns className="absolute -top-10 left-[10%] w-16 h-16 opacity-40" />
         <div className="max-w-2xl mx-auto">
           <motion.div
-            className="p-10 rounded-3xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-cyan-500/10 dark:via-blue-500/10 dark:to-purple-500/10 border border-blue-100 dark:border-white/10 shadow-sm dark:backdrop-blur-sm text-center"
+            className="p-10 rounded-3xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-cyan-500/10 dark:via-blue-500/10 dark:to-purple-500/10 border border-blue-100 dark:border-white/10 shadow-sm dark:backdrop-blur-sm text-center relative overflow-hidden"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Let&apos;s Connect</h2>
-            <p className="text-gray-600 dark:text-white/50 mb-8 max-w-md mx-auto">{t.home.getInTouchDescription}</p>
-            <Link href="/contact" className="inline-flex items-center px-8 py-3.5 rounded-full bg-blue-600 dark:bg-white/10 border border-blue-600 dark:border-white/20 text-white dark:text-white font-medium hover:bg-blue-700 dark:hover:bg-white/15 dark:hover:border-white/30 transition-all duration-300">
+            {/* Background decoration */}
+            <CircleDecor className="absolute -top-10 -right-10 w-40 h-40 opacity-30" />
+            <CircleDecor className="absolute -bottom-10 -left-10 w-32 h-32 opacity-20" />
+
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 relative z-10">Let&apos;s Connect</h2>
+            <p className="text-gray-600 dark:text-white/50 mb-8 max-w-md mx-auto relative z-10">{t.home.getInTouchDescription}</p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center px-8 py-3.5 rounded-full bg-blue-600 dark:bg-white/10 border border-blue-600 dark:border-white/20 text-white dark:text-white font-medium hover:bg-blue-700 dark:hover:bg-white/15 dark:hover:border-white/30 transition-all duration-300 relative z-10"
+            >
               {t.home.contactMe}
               <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />

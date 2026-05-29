@@ -1,7 +1,10 @@
 "use client";
 
+import { CSSProperties } from "react";
+
 interface HandDrawnProps {
   className?: string;
+  style?: CSSProperties;
 }
 
 // Decorative blob shape - large and visible

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLocale } from "@/i18n/LocaleContext";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -16,6 +17,8 @@ const itemVariants = {
 };
 
 export default function About() {
+  const { t } = useLocale();
+
   return (
     <div className="max-w-2xl mx-auto px-4 py-12 sm:py-16">
       <motion.section
@@ -28,21 +31,14 @@ export default function About() {
           className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900"
           variants={itemVariants}
         >
-          About
+          {t.about.title}
         </motion.h1>
         <motion.div
           className="prose prose-lg text-gray-700 leading-relaxed space-y-4"
           variants={itemVariants}
         >
-          <p>
-            Software developer with experience in building web applications and
-            distributed systems. I enjoy solving complex problems and writing
-            clean, maintainable code that makes a difference.
-          </p>
-          <p>
-            This site serves as my digital garden — a place to share projects,
-            write about technical topics, and document my learning journey.
-          </p>
+          <p>{t.about.bio}</p>
+          <p>{t.about.bio2}</p>
         </motion.div>
       </motion.section>
 
@@ -56,7 +52,7 @@ export default function About() {
           className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-6"
           variants={itemVariants}
         >
-          Technical Focus
+          {t.about.technicalFocus}
         </motion.h2>
         <motion.div
           className="grid grid-cols-2 gap-4"
@@ -90,18 +86,11 @@ export default function About() {
           className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-6"
           variants={itemVariants}
         >
-          What I Do
+          {t.about.whatIDo}
         </motion.h2>
         <motion.div className="space-y-4 text-gray-700" variants={itemVariants}>
-          <p>
-            I build web applications, APIs, and developer tools. My focus is on
-            creating reliable, efficient, and user-friendly software solutions.
-          </p>
-          <p>
-            I believe in writing code that is not just functional, but also
-            readable and maintainable. Good architecture decisions early on save
-            time and headaches later.
-          </p>
+          <p>{t.about.whatIDoText1}</p>
+          <p>{t.about.whatIDoText2}</p>
         </motion.div>
       </motion.section>
 
@@ -115,16 +104,16 @@ export default function About() {
           className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-6"
           variants={itemVariants}
         >
-          What I&apos;m Not
+          {t.about.whatImNot}
         </motion.h2>
         <motion.ul
           className="space-y-2 text-gray-600"
           variants={containerVariants}
         >
           {[
-            "Not a UI/UX designer — I focus on implementation",
-            "Not focused on mobile apps — web is my canvas",
-            "Not a DevOps specialist — I collaborate with those who are",
+            t.about.notDesigner,
+            t.about.notMobile,
+            t.about.notDevops,
           ].map((item) => (
             <motion.li key={item} variants={itemVariants} className="flex items-start">
               <span className="mr-2 text-gray-400">—</span>
@@ -144,11 +133,10 @@ export default function About() {
           className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-6"
           variants={itemVariants}
         >
-          Currently Learning
+          {t.about.currentlyLearning}
         </motion.h2>
         <motion.p className="text-gray-700" variants={itemVariants}>
-          System design patterns, performance optimization, and exploring new
-          web technologies that emerge from the React ecosystem.
+          {t.about.currentlyLearningText}
         </motion.p>
       </motion.section>
     </div>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useLocale } from "@/i18n/LocaleContext";
 
 const writings = [
   {
@@ -21,6 +22,8 @@ const writings = [
 ];
 
 export default function Writing() {
+  const { t } = useLocale();
+
   return (
     <div className="max-w-2xl mx-auto px-4 py-12 sm:py-16">
       <motion.section
@@ -32,14 +35,14 @@ export default function Writing() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          Writing
+          {t.writing.title}
         </motion.h1>
         <motion.p
           className="mt-4 text-gray-600"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.1 } }}
         >
-          Technical notes, learning logs, and debug总结。
+          {t.writing.description}
         </motion.p>
       </motion.section>
 

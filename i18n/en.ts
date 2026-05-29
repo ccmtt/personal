@@ -8,9 +8,9 @@ export const en = {
   },
   home: {
     title: "Chen Mingtao",
-    subtitle: "Software Developer",
+    subtitle: "SRE+AI",
     description:
-      "Building things with code. Currently focused on full-stack development and system design.",
+      "Building things with code. Currently focused on SRE toolchains, automation, and AI application development.",
     projectsTitle: "Projects",
     viewAllProjects: "View all projects",
     recentWritingTitle: "Recent Writing",
@@ -22,22 +22,22 @@ export const en = {
   },
   about: {
     title: "About",
-    bio: "Software developer with experience in building web applications and distributed systems. I enjoy solving complex problems and writing clean, maintainable code that makes a difference.",
+    bio: "SRE engineer focused on automation, monitoring, and reliability. Exploring AI applications in operations.",
     bio2:
       "This site serves as my digital garden — a place to share projects, write about technical topics, and document my learning journey.",
     technicalFocus: "Technical Focus",
     whatIDo: "What I Do",
     whatIDoText1:
-      "I build web applications, APIs, and developer tools. My focus is on creating reliable, efficient, and user-friendly software solutions.",
+      "I build SRE toolchains, automation scripts, and monitoring systems. My focus is on creating reliable, efficient, and sustainable systems.",
     whatIDoText2:
-      "I believe in writing code that is not just functional, but also readable and maintainable. Good architecture decisions early on save time and headaches later.",
+      "I believe observability is more than just metrics — it's understanding system behavior. Good alerting strategies and automation significantly reduce operational pressure.",
     whatImNot: "What I'm Not",
-    notDesigner: "Not a UI/UX designer — I focus on implementation",
+    notDesigner: "Not a UI/UX designer — I focus on backend and systems",
     notMobile: "Not focused on mobile apps — web is my canvas",
-    notDevops: "Not a DevOps specialist — I collaborate with those who are",
+    notDevops: "Not a pure DevOps engineer — I lean more toward reliability engineering",
     currentlyLearning: "Currently Learning",
     currentlyLearningText:
-      "System design patterns, performance optimization, and exploring new web technologies that emerge from the React ecosystem.",
+      "AI/LLM application development, observability architecture, and exploring new tools in the SRE space.",
   },
   projects: {
     title: "Projects",

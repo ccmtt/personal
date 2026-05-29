@@ -63,16 +63,16 @@ export default function Home() {
             {/* Avatar with multiple decorative layers */}
             <motion.div variants={itemVariants} className="flex justify-center">
               <div className="relative">
-                {/* Outer decorative rings */}
-                <div className="absolute inset-0 rounded-full border-[3px] border-dashed border-blue-400/50 dark:border-cyan-400/40" style={{ transform: "scale(1.5)" }} />
-                <div className="absolute inset-0 rounded-full border-[2px] border-purple-400/40 dark:border-purple-400/30" style={{ transform: "scale(1.8)" }} />
+                {/* Outer decorative rings - compact, scale adjusted for larger avatar */}
+                <div className="absolute inset-0 rounded-full border-[3px] border-dashed border-blue-400/50 dark:border-cyan-400/40" style={{ transform: "scale(1.2)" }} />
+                <div className="absolute inset-0 rounded-full border-[2px] border-purple-400/40 dark:border-purple-400/30" style={{ transform: "scale(1.35)" }} />
 
                 {/* Background glow effect */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 dark:from-cyan-500/20 dark:to-purple-500/20 blur-xl" />
 
                 {/* Avatar circle */}
-                <div className="relative w-28 h-28 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 flex items-center justify-center text-white text-2xl font-bold shadow-2xl">
-                  CMT
+                <div className="relative w-44 h-44 rounded-full overflow-hidden shadow-2xl">
+                  <img src="/avatar.jpg" alt="Chen Mingtao" className="w-full h-full object-cover" />
                 </div>
 
                 {/* Floating stars around avatar */}
@@ -92,7 +92,7 @@ export default function Home() {
 
             {/* Subtitle */}
             <motion.p className="text-xl sm:text-2xl text-gray-600 dark:text-white/70 font-light" variants={itemVariants}>
-              {t.home.subtitle}
+              <strong className="font-bold">SRE+AI</strong>
             </motion.p>
 
             {/* Description */}

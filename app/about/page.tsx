@@ -4,17 +4,17 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About Me",
-  description: "Learn more about Chen Mingtao, a full-stack developer focused on modern web technologies.",
+  description: "Learn more about Chen Mingtao, an SRE engineer focused on automation, monitoring, and AI applications.",
   openGraph: {
     title: "About Me - Chen Mingtao",
-    description: "Learn more about Chen Mingtao, a full-stack developer focused on modern web technologies.",
+    description: "Learn more about Chen Mingtao, an SRE engineer focused on automation, monitoring, and AI applications.",
     url: "https://chenmingtao.com/about",
     type: "profile",
   },
   twitter: {
     card: "summary",
     title: "About Me - Chen Mingtao",
-    description: "Learn more about Chen Mingtao, a full-stack developer focused on modern web technologies.",
+    description: "Learn more about Chen Mingtao, an SRE engineer focused on automation, monitoring, and AI applications.",
   },
 };
 

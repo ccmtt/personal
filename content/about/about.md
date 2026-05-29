@@ -1,55 +1,55 @@
 ---
 title: About Me
-subtitle: Full-stack Developer
+subtitle: SRE Engineer
 avatar: CMT
 status: Available for projects
-bio: 你好 👋 我是陈明涛，一名热爱技术、专注于全栈开发的工程师。
-bio2: 我热衷于用代码构建有意义的产品，从前端的交互设计到后端的架构实现，都追求优雅和实用并重。我相信好的产品源于对细节的极致追求。
+bio: 你好 👋 我是陈明涛，一名 SRE 工程师，专注于自动化、监控和 AI 应用开发。
+bio2: 我热衷于用代码构建可靠的运维体系，从基础设施自动化到可观测性建设，都追求稳定和效率并重。我相信好的系统源于对可靠性的极致追求。
 location: China
 education: Software Engineering
-currentlyLearning: Rust, WebAssembly, Edge Computing
-currentlyLearningText: 最近在学习 Rust 和 WebAssembly，探索边缘计算的可能性。同时也对编译器和工具链开发充满兴趣。
+currentlyLearning: AI/LLM, Observability, SRE Toolchains
+currentlyLearningText: 最近在学习 AI/LLM 应用开发、可观测性架构，以及探索 SRE 领域的新工具和最佳实践。
 whatIDo: What I Do
-whatIDoItem1: Turning ideas into reality through code
-whatIDoItem2: Building performant and scalable systems
-whatIDoItem3: Solving complex problems with elegant solutions
+whatIDoItem1: Building reliable SRE toolchains and automation
+whatIDoItem2: Implementing monitoring and observability systems
+whatIDoItem3: Exploring AI applications in operations
 whatImNot: What I'm NOT
-notDesigner: 不是 UI 设计师 - 我专注于功能实现和用户体验，不擅长视觉设计
-notMobile: 不做移动端应用 - 主要精力在 Web 技术栈
-notDevops: 不擅长运维 - 服务器部署这类工作我会尽量简化
+notDesigner: 不是 UI 设计师 - 我专注于后端和系统，不擅长视觉设计
+notMobile: 不做移动端应用 - 主要精力在基础设施和工具链
+notDevops: 不是纯 DevOps - 我更侧重于可靠性工程而非部署运维
 technicalFocus: Technical Skills
 skills:
-  - Full-stack Web Development
-  - System Design & Architecture
-  - TypeScript / JavaScript
-  - React and Next.js
-  - Node.js Backend Services
-  - API Design & Integration
+  - SRE & DevOps
+  - Automation & Scripting
+  - Monitoring & Observability
+  - AI/LLM Application
+  - Infrastructure as Code
+  - Python & Go
 social:
   github: ccmtt
-  twitter: chenmingtao
   email: chenmingtao@example.com
 ---
 
 ## 你好 👋
 
-我是陈明涛，一名热爱技术的全栈开发者。我专注于用现代前端技术构建有意义的数字产品。
+我是陈明涛，一名 SRE 工程师。我专注于用技术手段提升系统可靠性和运维效率。
 
 ## 我做什么
 
-我热衷于将想法转化为可用的产品，无论是复杂的 Web 应用、直观的用户界面，还是高效的后端服务。我喜欢解决具有挑战性的技术问题，并在过程中不断提升自己。
+我热衷于构建可靠的自动化工具和监控系统，从基础设施即代码到可观测性建设，都追求稳定和效率。我喜欢解决具有挑战性的运维问题，并在过程中不断提升自己。
 
 ## 技术栈
 
 在工作中，我主要使用：
 
-- **前端**: Next.js, React, TypeScript, Tailwind CSS, Framer Motion
-- **后端**: Node.js, Python, 各种 API 设计与集成
-- **工具**: Git, Docker, Linux 环境
+- **自动化**: Python, Go, Shell Scripting
+- **监控**: Prometheus, Grafana, ELK Stack
+- **基础设施**: Docker, Kubernetes, Terraform
+- **AI**: LLM, RAG, AI Agent
 
 ## 目前在学
 
-最近我对系统编程和性能优化产生了浓厚兴趣，正在学习 Rust 和 WebAssembly。这些技术让我对程序底层运作有更深的理解。
+最近我对 AI 在运维领域的应用产生了浓厚兴趣，正在学习 LLM 和 RAG 技术。这些技术让我对智能运维有了更深的理解。
 
 ## 联系我
 

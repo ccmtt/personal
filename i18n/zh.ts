@@ -8,8 +8,8 @@ export const zh = {
   },
   home: {
     title: "陈明涛",
-    subtitle: "软件开发工程师",
-    description: "用代码构建产品。目前专注于全栈开发和系统设计。",
+    subtitle: "SRE+AI",
+    description: "用代码构建产品。目前专注于 SRE 工具链、自动化运维和 AI 应用开发。",
     projectsTitle: "项目",
     viewAllProjects: "查看所有项目",
     recentWritingTitle: "最近写作",
@@ -20,22 +20,22 @@ export const zh = {
   },
   about: {
     title: "关于",
-    bio: "拥有构建 Web 应用和分布式系统经验的软件开发工程师。喜欢解决复杂问题，编写有价值且易于维护的代码。",
+    bio: "SRE 工程师，专注于自动化、监控和可靠性。正在探索 AI 在运维领域的应用。",
     bio2:
       "这个网站是我的数字花园——分享项目、记录技术心得、文档化学习历程的地方。",
     technicalFocus: "技术方向",
     whatIDo: "我做些什么",
     whatIDoText1:
-      "我构建 Web 应用、API 和开发者工具。专注于创造可靠、高效、用户体验良好的软件解决方案。",
+      "我构建 SRE 工具链、自动化脚本和监控系统。专注于创造可靠、高效、可持续运行的系统。",
     whatIDoText2:
-      "我相信代码不仅要功能正常，还要易于阅读和维护。早期良好的架构决策可以节省时间和避免日后的麻烦。",
+      "我相信可观测性不只是监控数字，而是理解系统行为。良好的告警策略和自动化能显著降低运维压力。",
     whatImNot: "我不做什么",
-    notDesigner: "不是 UI/UX 设计师——我专注于实现",
+    notDesigner: "不是 UI/UX 设计师——我专注于后端和系统",
     notMobile: "不专注于移动应用——Web 是我的舞台",
-    notDevops: "不是 DevOps 专家——我与专业者合作",
+    notDevops: "不是纯 DevOps 工程师——我更侧重于可靠性工程",
     currentlyLearning: "当前学习",
     currentlyLearningText:
-      "系统设计模式、性能优化，以及探索 React 生态系统中出现的新 Web 技术。",
+      "AI/LLM 应用开发、可观测性架构，以及探索 SRE 领域的新工具。",
   },
   projects: {
     title: "项目",

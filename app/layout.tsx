@@ -16,8 +16,8 @@ export const metadata: Metadata = {
     default: "Chen Mingtao",
     template: "%s | Chen Mingtao",
   },
-  description: "Developer-focused personal website. Full-stack developer specializing in modern web technologies.",
-  keywords: ["developer", "full-stack", "web development", "Next.js", "TypeScript", "React"],
+  description: "SRE engineer personal website. Specializing in automation, monitoring, and AI application development.",
+  keywords: ["SRE", "DevOps", "automation", "AI", "SRE tools", "monitoring", "infrastructure"],
   authors: [{ name: "Chen Mingtao" }],
   creator: "Chen Mingtao",
   openGraph: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     url: "https://chenmingtao.com",
     siteName: "Chen Mingtao",
     title: "Chen Mingtao",
-    description: "Developer-focused personal website. Full-stack developer specializing in modern web technologies.",
+    description: "SRE engineer personal website. Specializing in automation, monitoring, and AI application development.",
     images: [
       {
         url: "/og-image.svg",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Chen Mingtao",
-    description: "Developer-focused personal website. Full-stack developer specializing in modern web technologies.",
+    description: "SRE engineer personal website. Specializing in automation, monitoring, and AI application development.",
     images: ["/og-image.svg"],
     creator: "@chenmingtao",
   },
@@ -96,18 +96,18 @@ export default function RootLayout({
               "@type": "Person",
               "name": "Chen Mingtao",
               "url": "https://chenmingtao.com",
-              "jobTitle": "Full-stack Developer",
-              "description": "Developer-focused personal website. Full-stack developer specializing in modern web technologies.",
+              "jobTitle": "SRE Engineer",
+              "description": "SRE engineer specializing in automation, monitoring, and AI application development.",
               "sameAs": [
-                "https://github.com/ccmtt",
-                "https://twitter.com/chenmingtao"
+                "https://github.com/ccmtt"
               ],
               "knowsAbout": [
-                "Next.js",
-                "TypeScript",
-                "React",
-                "Node.js",
-                "Web Development"
+                "SRE",
+                "Automation",
+                "Monitoring",
+                "AI",
+                "DevOps",
+                "Infrastructure"
               ]
             }),
           }}

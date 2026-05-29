@@ -67,8 +67,8 @@ export default function AboutClient({ aboutData, markdownContent }: AboutClientP
               <div className="absolute inset-0 rounded-full border-[2px] border-dashed border-purple-400/40 dark:border-purple-400/30" style={{ transform: "scale(1.3)" }} />
               <div className="absolute inset-0 rounded-full border-[1px] border-blue-400/30 dark:border-blue-400/20" style={{ transform: "scale(1.5)" }} />
 
-              <div className="relative w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 flex items-center justify-center text-white text-xl font-bold shadow-2xl">
-                {aboutData.avatar}
+              <div className="relative w-28 h-28 mx-auto rounded-full overflow-hidden shadow-2xl">
+                <img src="/avatar.jpg" alt="Chen Mingtao" className="w-full h-full object-cover" />
               </div>
             </div>
           </motion.div>

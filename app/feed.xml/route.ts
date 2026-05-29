@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const baseUrl = "https://chenmingtao.com";
   const siteName = "Chen Mingtao";
-  const description = "Software Developer - Technical notes and projects";
+  const description = "SRE Engineer - Technical notes and projects";
 
   const writings = [
     {

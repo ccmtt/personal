@@ -37,12 +37,6 @@ export default function Home() {
     <div className="relative">
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* Background gradient orbs */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-[20%] -right-[10%] w-[500px] h-[500px] rounded-full bg-gradient-to-br from-blue-400/20 to-purple-400/20 blur-3xl" />
-          <div className="absolute -bottom-[20%] -left-[10%] w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-cyan-400/20 to-blue-400/20 blur-3xl" />
-        </div>
-
         <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
           <motion.div
             className="space-y-8"
@@ -50,11 +44,11 @@ export default function Home() {
             animate="visible"
             variants={containerVariants}
           >
-            {/* Decorative element */}
+            {/* Avatar with glow */}
             <motion.div variants={itemVariants} className="flex justify-center">
               <div className="relative">
-                <div className="absolute inset-0 blur-xl bg-blue-500/30 rounded-full w-24 h-24" />
-                <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold">
+                <div className="absolute inset-0 blur-2xl bg-cyan-500/40 rounded-full w-24 h-24 animate-pulse" />
+                <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center text-white text-2xl font-bold shadow-[0_0_30px_rgba(59,130,246,0.5)]">
                   CMT
                 </div>
               </div>
@@ -65,12 +59,14 @@ export default function Home() {
               className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
               variants={itemVariants}
             >
-              <span className="gradient-text">{t.home.title}</span>
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(168,85,247,0.5)]">
+                {t.home.title}
+              </span>
             </motion.h1>
 
             {/* Subtitle */}
             <motion.p
-              className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 font-light"
+              className="text-xl sm:text-2xl text-blue-200/80 font-light"
               variants={itemVariants}
             >
               {t.home.subtitle}
@@ -78,7 +74,7 @@ export default function Home() {
 
             {/* Description */}
             <motion.p
-              className="text-base sm:text-lg text-gray-500 dark:text-gray-400 max-w-lg mx-auto leading-relaxed"
+              className="text-base sm:text-lg text-gray-400 max-w-lg mx-auto leading-relaxed"
               variants={itemVariants}
             >
               {t.home.description}
@@ -91,7 +87,7 @@ export default function Home() {
             >
               <Link
                 href="/projects"
-                className="group px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-105"
+                className="group px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-medium shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_40px_rgba(168,85,247,0.5)] transition-all duration-300 hover:scale-105 border border-white/10"
               >
                 View Projects
                 <span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">
@@ -100,7 +96,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/about"
-                className="px-6 py-3 rounded-full border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-medium hover:border-blue-400 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300"
+                className="px-6 py-3 rounded-full border border-blue-500/30 text-blue-200 font-medium hover:bg-blue-500/10 hover:border-blue-400/50 transition-all duration-300"
               >
                 About Me
               </Link>
@@ -108,7 +104,7 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator with glow */}
         <motion.div
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
           initial={{ opacity: 0, y: -10 }}
@@ -116,17 +112,17 @@ export default function Home() {
           transition={{ delay: 1, duration: 0.5 }}
         >
           <motion.div
-            className="w-6 h-10 rounded-full border-2 border-gray-300 dark:border-gray-600 flex justify-center pt-2"
+            className="w-6 h-10 rounded-full border border-cyan-500/30 flex justify-center pt-2 shadow-[0_0_15px_rgba(34,211,238,0.3)]"
             animate={{ y: [0, 5, 0] }}
             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
           >
-            <div className="w-1 h-2 rounded-full bg-gray-400 dark:bg-gray-500" />
+            <div className="w-1 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
           </motion.div>
         </motion.div>
       </section>
 
       {/* Projects Section */}
-      <section className="py-20 px-4 bg-gray-50 dark:bg-gray-800/50">
+      <section className="py-20 px-4">
         <div className="max-w-2xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -134,7 +130,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-8 text-center">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-cyan-400/70 mb-8 text-center">
               Featured Project
             </h2>
           </motion.div>
@@ -148,26 +144,26 @@ export default function Home() {
           >
             <Link
               href="/projects/personal-site"
-              className="group block p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-500 transition-all duration-300"
+              className="group block p-8 rounded-2xl bg-gray-900/50 border border-blue-500/20 hover:border-cyan-400/40 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.1)] hover:shadow-[0_0_30px_rgba(34,211,238,0.2)] transition-all duration-300"
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-500/20 text-green-400 border border-green-500/30">
                       {t.projects.status}
                     </span>
-                    <span className="text-xs text-gray-400 dark:text-gray-500">2026</span>
+                    <span className="text-xs text-gray-500">2026</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-3">
+                  <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-3">
                     {t.home.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  <p className="text-gray-400 leading-relaxed">
                     Personal Website
                   </p>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/30 flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(59,130,246,0.3)]">
                   <svg
-                    className="w-5 h-5 text-blue-600 dark:text-blue-400"
+                    className="w-5 h-5 text-cyan-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -185,7 +181,7 @@ export default function Home() {
                 {["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"].map((tech) => (
                   <span
                     key={tech}
-                    className="text-xs px-3 py-1 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 font-mono"
+                    className="text-xs px-3 py-1 rounded-md bg-gray-800/50 text-blue-300/80 font-mono border border-gray-700/50"
                   >
                     {tech}
                   </span>
@@ -206,12 +202,12 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-cyan-400/70">
               Recent Writing
             </h2>
             <Link
               href="/writing"
-              className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+              className="text-sm text-blue-400 hover:text-cyan-400 transition-colors"
             >
               View all →
             </Link>
@@ -224,23 +220,23 @@ export default function Home() {
             viewport={{ once: true }}
             variants={containerVariants}
           >
-            {recentWritings.map((writing, index) => (
+            {recentWritings.map((writing) => (
               <motion.div key={writing.slug} variants={itemVariants}>
                 <Link
                   href={`/writing/${writing.slug}`}
-                  className="group flex items-center justify-between p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-200"
+                  className="group flex items-center justify-between p-5 rounded-xl bg-gray-900/50 border border-blue-500/20 hover:border-cyan-400/40 hover:bg-gray-900/70 transition-all duration-200"
                 >
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-base font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 truncate transition-colors">
+                    <h3 className="text-base font-medium text-white group-hover:text-cyan-400 truncate transition-colors">
                       {writing.title}
                     </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    <p className="text-sm text-gray-500 mt-1">
                       {writing.date}
                     </p>
                   </div>
                   <div className="ml-4">
                     <svg
-                      className="w-5 h-5 text-gray-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all"
+                      className="w-5 h-5 text-blue-400 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -261,9 +257,10 @@ export default function Home() {
       </section>
 
       {/* Contact CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-blue-600 to-purple-700">
-        <div className="max-w-2xl mx-auto text-center">
+      <section className="py-20 px-4">
+        <div className="max-w-2xl mx-auto">
           <motion.div
+            className="p-8 rounded-2xl bg-gradient-to-br from-blue-900/50 via-purple-900/50 to-gray-900/50 border border-blue-500/30 shadow-[0_0_40px_rgba(59,130,246,0.2)] text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -272,12 +269,12 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Let&apos;s Connect
             </h2>
-            <p className="text-blue-100 mb-8 max-w-md mx-auto">
+            <p className="text-blue-200/70 mb-8 max-w-md mx-auto">
               {t.home.getInTouchDescription}
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-3 rounded-full bg-white text-blue-600 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] transition-all duration-300 hover:scale-105 border border-white/10"
             >
               {t.home.contactMe}
               <svg

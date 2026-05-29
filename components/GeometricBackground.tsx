@@ -2,122 +2,79 @@
 
 import { useEffect, useState } from "react";
 
-interface Shape {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  rotation: number;
-  duration: number;
-  delay: number;
-  type: "circle" | "square" | "triangle";
-}
-
 export default function GeometricBackground() {
-  const [shapes, setShapes] = useState<Shape[]>([]);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const generatedShapes: Shape[] = Array.from({ length: 12 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: 20 + Math.random() * 60,
-      rotation: Math.random() * 360,
-      duration: 15 + Math.random() * 20,
-      delay: Math.random() * 10,
-      type: ["circle", "square", "triangle"][Math.floor(Math.random() * 3)] as Shape["type"],
-    }));
-    setShapes(generatedShapes);
   }, []);
 
   if (!mounted) return null;
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      {/* Gradient base */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900" />
+      {/* Dark gradient base with cyberpunk colors */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-blue-950 to-purple-950" />
 
-      {/* Floating shapes */}
-      {shapes.map((shape) => (
+      {/* Glowing orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-blue-600/20 blur-[120px]" />
+      <div className="absolute top-1/2 right-1/4 w-80 h-80 rounded-full bg-purple-600/15 blur-[100px]" />
+      <div className="absolute bottom-1/4 left-1/3 w-72 h-72 rounded-full bg-cyan-600/15 blur-[100px]" />
+
+      {/* Grid lines */}
+      <div className="absolute inset-0">
         <div
-          key={shape.id}
-          className="absolute"
+          className="w-full h-full"
           style={{
-            left: `${shape.x}%`,
-            top: `${shape.y}%`,
-            animation: `float-${shape.id} ${shape.duration}s ease-in-out infinite`,
-            animationDelay: `${shape.delay}s`,
+            backgroundImage: `
+              linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px)
+            `,
+            backgroundSize: "60px 60px",
           }}
-        >
-          {shape.type === "circle" && (
-            <div
-              className="rounded-full bg-gradient-to-br from-blue-400/10 to-purple-400/10 dark:from-blue-500/5 dark:to-purple-500/5 backdrop-blur-sm"
-              style={{
-                width: shape.size,
-                height: shape.size,
-                animation: `rotate ${shape.duration * 0.5}s linear infinite`,
-              }}
-            />
-          )}
-          {shape.type === "square" && (
-            <div
-              className="bg-gradient-to-br from-cyan-400/10 to-blue-400/10 dark:from-cyan-500/5 dark:to-blue-500/5 backdrop-blur-sm"
-              style={{
-                width: shape.size,
-                height: shape.size,
-                transform: `rotate(${shape.rotation}deg)`,
-                animation: `rotate ${shape.duration * 0.3}s linear infinite`,
-              }}
-            />
-          )}
-          {shape.type === "triangle" && (
-            <div
-              className="w-0 h-0"
-              style={{
-                borderLeft: `${shape.size / 2}px solid transparent`,
-                borderRight: `${shape.size / 2}px solid transparent`,
-                borderBottom: `${shape.size}px solid rgba(139, 92, 246, 0.1)`,
-                animation: `rotate ${shape.duration * 0.4}s linear infinite`,
-              }}
-            />
-          )}
-        </div>
-      ))}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(168, 85, 247, 0.02) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(168, 85, 247, 0.02) 1px, transparent 1px)
+            `,
+            backgroundSize: "180px 180px",
+          }}
+        />
+      </div>
 
-      {/* Grid pattern */}
+      {/* Scan lines effect */}
       <div
-        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
+        className="absolute inset-0 opacity-[0.015]"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
-          backgroundSize: "40px 40px",
+          background: `repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255,255,255,0.03) 2px,
+            rgba(255,255,255,0.03) 4px
+          )`,
         }}
       />
 
-      {/* CSS animations */}
-      <style jsx>{`
-        ${shapes
-          .map(
-            (shape) => `
-          @keyframes float-${shape.id} {
-            0%, 100% {
-              transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-              transform: translate(${Math.sin(shape.id) * 30}px, ${Math.cos(shape.id) * 20}px) rotate(90deg);
-            }
-            50% {
-              transform: translate(${Math.cos(shape.id) * 20}px, ${Math.sin(shape.id) * 30}px) rotate(180deg);
-            }
-            75% {
-              transform: translate(${Math.sin(shape.id) * -20}px, ${Math.cos(shape.id) * -20}px) rotate(270deg);
-            }
-          }
-        `
-          )
-          .join("")}
-      `}</style>
+      {/* Floating neon dots */}
+      <div className="absolute top-20 left-[15%] w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)] animate-pulse" />
+      <div className="absolute top-40 right-[20%] w-1 h-1 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+      <div className="absolute top-60 left-[25%] w-1 h-1 rounded-full bg-purple-400 shadow-[0_0_8px_rgba(168,85,247,0.8)]" />
+      <div className="absolute bottom-40 right-[15%] w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)] animate-pulse" />
+      <div className="absolute bottom-60 left-[40%] w-1 h-1 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+      <div className="absolute top-[70%] right-[30%] w-1 h-1 rounded-full bg-purple-400 shadow-[0_0_8px_rgba(168,85,247,0.8)]" />
+
+      {/* Corner accents */}
+      <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-blue-500/20" />
+      <div className="absolute top-0 right-0 w-32 h-32 border-r-2 border-t-2 border-purple-500/20" />
+      <div className="absolute bottom-0 left-0 w-32 h-32 border-l-2 border-b-2 border-cyan-500/20" />
+      <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-blue-500/20" />
+
+      {/* Animated glow line */}
+      <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
     </div>
   );
 }

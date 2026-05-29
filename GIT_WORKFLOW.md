@@ -234,6 +234,13 @@ type: concise summary
 - `fix: resolve mobile layout overflow`
 - `docs: update guide for site structure`
 
+### 9.1 提交要求
+
+- 每次有效变更都应提交。
+- 每次收工前必须保证有一个可回滚、可继续的提交点。
+- 不要把所有改动攒到最后一次性提交。
+- 关键进度应尽量拆成多个清晰提交，方便跨设备接力和回溯。
+
 ## 10. 每日工作清单
 
 ### 开始前
@@ -253,6 +260,7 @@ type: concise summary
 - 确认 `git status` 干净或已经提交
 - 推送到远程
 - 写下下一步要做什么
+- 确保当前状态对应一个可继续的 Git 提交
 
 ## 11. 常用命令速查
 

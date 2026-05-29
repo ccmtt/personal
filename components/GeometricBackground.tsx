@@ -15,14 +15,15 @@ interface Star {
 export default function GeometricBackground() {
   const [mounted, setMounted] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [isDark, setIsDark] = useState(true);
 
   const stars = useMemo<Star[]>(() => {
-    return Array.from({ length: 80 }, (_, i) => ({
+    return Array.from({ length: 50 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
       size: Math.random() * 2 + 1,
-      opacity: Math.random() * 0.5 + 0.3,
+      opacity: Math.random() * 0.4 + 0.2,
       duration: 2 + Math.random() * 3,
       delay: Math.random() * 5,
     }));
@@ -30,19 +31,47 @@ export default function GeometricBackground() {
 
   useEffect(() => {
     setMounted(true);
+    const isDarkMode = !document.documentElement.classList.contains("dark");
+    setIsDark(isDarkMode);
+
     const handleScroll = () => setScrollY(window.scrollY);
+    const observer = new MutationObserver(() => {
+      setIsDark(!document.documentElement.classList.contains("dark"));
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   if (!mounted) return null;
 
+  if (!isDark) {
+    // Light mode - soft warm gradient
+    return (
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50/30" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-blue-100/20 to-purple-100/20 blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-cyan-50 to-blue-50/30 blur-[100px]" />
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`,
+          backgroundSize: "50px 50px",
+        }} />
+      </div>
+    );
+  }
+
+  // Dark mode - cosmic aurora
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      {/* Deep space gradient base */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#0d0d24] to-[#151530]" />
 
-      {/* Aurora gradient layers */}
       <div
         className="absolute top-0 left-1/4 w-[800px] h-[600px] rounded-full opacity-30 blur-[120px]"
         style={{
@@ -65,7 +94,6 @@ export default function GeometricBackground() {
         }}
       />
 
-      {/* Twinkling stars */}
       {stars.map((star) => (
         <div
           key={star.id}
@@ -82,22 +110,8 @@ export default function GeometricBackground() {
         />
       ))}
 
-      {/* Subtle star streaks */}
       <div className="absolute top-1/4 left-1/4 w-32 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent rotate-45" />
       <div className="absolute top-1/3 right-1/3 w-24 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent -rotate-30" />
-      <div className="absolute bottom-1/3 left-1/2 w-20 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent rotate-15" />
-
-      {/* Constellation dots */}
-      <div className="absolute top-[15%] right-[20%] flex gap-2">
-        <div className="w-1 h-1 rounded-full bg-white/60" />
-        <div className="w-1 h-1 rounded-full bg-white/40 mt-2" />
-        <div className="w-1 h-1 rounded-full bg-white/60 mt-4" />
-      </div>
-      <div className="absolute top-[30%] left-[15%] flex gap-2">
-        <div className="w-1.5 h-1.5 rounded-full bg-white/50" />
-        <div className="w-1 h-1 rounded-full bg-white/30 mt-3 ml-1" />
-        <div className="w-1 h-1 rounded-full bg-white/40 mt-1 ml-2" />
-      </div>
 
       <style jsx>{`
         ${stars

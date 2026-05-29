@@ -47,11 +47,9 @@ export default function Home() {
             {/* Avatar */}
             <motion.div variants={itemVariants} className="flex justify-center">
               <div className="relative">
-                {/* Glow rings */}
-                <div className="absolute inset-0 rounded-full border border-cyan-400/20 animate-pulse" style={{ transform: "scale(1.3)" }} />
-                <div className="absolute inset-0 rounded-full border border-purple-400/15" style={{ transform: "scale(1.6)" }} />
-                {/* Avatar circle */}
-                <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold shadow-[0_0_40px_rgba(0,212,170,0.3)]">
+                <div className="absolute inset-0 rounded-full border border-cyan-400/20 dark:border-cyan-400/20 animate-pulse" style={{ transform: "scale(1.3)" }} />
+                <div className="absolute inset-0 rounded-full border border-purple-400/15 dark:border-purple-400/15" style={{ transform: "scale(1.6)" }} />
+                <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 flex items-center justify-center text-white dark:text-white text-2xl font-bold shadow-[0_0_40px_rgba(0,212,170,0.3)] dark:shadow-[0_0_40px_rgba(0,212,170,0.3)]">
                   CMT
                 </div>
               </div>
@@ -62,14 +60,14 @@ export default function Home() {
               className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
               variants={itemVariants}
             >
-              <span className="bg-gradient-to-r from-white via-cyan-100 to-white bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gray-900 via-blue-600 to-gray-900 dark:from-white dark:via-cyan-100 dark:to-white bg-clip-text text-transparent dark:bg-clip-text dark:text-transparent">
                 {t.home.title}
               </span>
             </motion.h1>
 
             {/* Subtitle */}
             <motion.p
-              className="text-xl sm:text-2xl text-white/70 font-light"
+              className="text-xl sm:text-2xl text-gray-600 dark:text-white/70 font-light"
               variants={itemVariants}
             >
               {t.home.subtitle}
@@ -77,7 +75,7 @@ export default function Home() {
 
             {/* Description */}
             <motion.p
-              className="text-base sm:text-lg text-white/50 max-w-lg mx-auto leading-relaxed"
+              className="text-base sm:text-lg text-gray-500 dark:text-white/50 max-w-lg mx-auto leading-relaxed"
               variants={itemVariants}
             >
               {t.home.description}
@@ -90,16 +88,14 @@ export default function Home() {
             >
               <Link
                 href="/projects"
-                className="group px-8 py-3.5 rounded-full bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 border border-white/20 text-white font-medium backdrop-blur-sm hover:from-cyan-500/30 hover:via-blue-500/30 hover:to-purple-500/30 hover:border-white/30 transition-all duration-300"
+                className="group px-8 py-3.5 rounded-full bg-blue-600 dark:bg-gradient-to-r dark:from-cyan-500/20 dark:via-blue-500/20 dark:to-purple-500/20 border border-blue-600 dark:border-white/20 text-white dark:text-white font-medium dark:backdrop-blur-sm hover:bg-blue-700 dark:hover:from-cyan-500/30 dark:hover:via-blue-500/30 dark:hover:to-purple-500/30 transition-all duration-300"
               >
                 View Projects
-                <span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">
-                  →
-                </span>
+                <span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">→</span>
               </Link>
               <Link
                 href="/about"
-                className="px-8 py-3.5 rounded-full border border-white/10 text-white/70 font-medium hover:bg-white/5 hover:border-white/20 transition-all duration-300"
+                className="px-8 py-3.5 rounded-full border-2 border-gray-200 dark:border-white/10 text-gray-700 dark:text-white/70 font-medium hover:border-blue-400 dark:hover:border-white/20 dark:hover:bg-white/5 transition-all duration-300"
               >
                 About Me
               </Link>
@@ -115,24 +111,20 @@ export default function Home() {
           transition={{ delay: 1.5 }}
         >
           <motion.div
-            className="w-6 h-10 rounded-full border border-white/20 flex items-start justify-center pt-2"
+            className="w-6 h-10 rounded-full border-2 border-gray-300 dark:border-white/20 flex items-start justify-center pt-2"
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
           >
-            <div className="w-1 h-2 rounded-full bg-gradient-to-b from-cyan-400/60 to-transparent" />
+            <div className="w-1 h-2 rounded-full bg-gray-400 dark:bg-gradient-to-b from-cyan-400/60 to-transparent" />
           </motion.div>
         </motion.div>
       </section>
 
       {/* Projects Section */}
-      <section className="py-24 px-4">
+      <section className="py-24 px-4 bg-gray-50/50 dark:bg-transparent">
         <div className="max-w-2xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-sm font-medium uppercase tracking-widest text-white/40 mb-10 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="text-sm font-medium uppercase tracking-widest text-gray-400 dark:text-white/40 mb-10 text-center">
               Featured Project
             </h2>
           </motion.div>
@@ -146,32 +138,32 @@ export default function Home() {
           >
             <Link
               href="/projects/personal-site"
-              className="group block p-8 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-sm hover:border-cyan-400/30 transition-all duration-300"
+              className="group block p-8 rounded-2xl bg-white dark:bg-white/[0.08] border border-gray-200 dark:border-white/10 shadow-sm hover:shadow-lg dark:hover:border-cyan-400/30 dark:hover:bg-white/[0.02] transition-all duration-300"
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-5">
-                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-cyan-500/20 text-green-700 dark:text-cyan-300 border border-green-200 dark:border-cyan-500/30">
                       {t.projects.status}
                     </span>
-                    <span className="text-xs text-white/40">2026</span>
+                    <span className="text-xs text-gray-400 dark:text-white/40">2026</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-cyan-300/90 transition-colors">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-cyan-300/90 transition-colors">
                     {t.home.title}
                   </h3>
-                  <p className="text-white/50 leading-relaxed">
+                  <p className="text-gray-600 dark:text-white/50 leading-relaxed">
                     Personal Website
                   </p>
                 </div>
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-white/10 flex items-center justify-center group-hover:border-cyan-400/40 transition-colors">
-                  <svg className="w-5 h-5 text-cyan-400/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-purple-100 dark:from-cyan-500/20 dark:to-purple-500/20 border border-gray-200 dark:border-white/10 flex items-center justify-center group-hover:border-cyan-400/40 dark:group-hover:border-cyan-400/40 transition-all">
+                  <svg className="w-5 h-5 text-blue-600 dark:text-cyan-400/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                 </div>
               </div>
               <div className="mt-5 flex flex-wrap gap-2">
                 {["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"].map((tech) => (
-                  <span key={tech} className="text-xs px-3 py-1 rounded-md bg-white/5 text-white/50 border border-white/10">
+                  <span key={tech} className="text-xs px-3 py-1 rounded-md bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-white/50 border border-gray-200 dark:border-white/10">
                     {tech}
                   </span>
                 ))}
@@ -190,34 +182,28 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-sm font-medium uppercase tracking-widest text-white/40">
+            <h2 className="text-sm font-medium uppercase tracking-widest text-gray-400 dark:text-white/40">
               Recent Writing
             </h2>
-            <Link href="/writing" className="text-sm text-cyan-400/70 hover:text-cyan-300 transition-colors">
+            <Link href="/writing" className="text-sm text-blue-600 dark:text-cyan-400/70 hover:text-blue-700 dark:hover:text-cyan-300 transition-colors">
               View all →
             </Link>
           </motion.div>
 
-          <motion.div
-            className="space-y-4"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
+          <motion.div className="space-y-4" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
             {recentWritings.map((writing) => (
               <motion.div key={writing.slug} variants={itemVariants}>
                 <Link
                   href={`/writing/${writing.slug}`}
-                  className="group flex items-center justify-between p-5 rounded-xl bg-white/[0.05] border border-white/10 hover:border-cyan-400/30 hover:bg-white/[0.08] transition-all duration-200"
+                  className="group flex items-center justify-between p-5 rounded-xl bg-white dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 hover:border-blue-300 dark:hover:border-cyan-400/30 hover:bg-gray-50 dark:hover:bg-white/[0.08] transition-all duration-200"
                 >
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-base font-medium text-white/90 group-hover:text-cyan-300/90 truncate">
+                    <h3 className="text-base font-medium text-gray-900 dark:text-white/90 group-hover:text-blue-600 dark:group-hover:text-cyan-300/90 truncate">
                       {writing.title}
                     </h3>
-                    <p className="text-sm text-white/40 mt-1">{writing.date}</p>
+                    <p className="text-sm text-gray-500 dark:text-white/40 mt-1">{writing.date}</p>
                   </div>
-                  <svg className="w-5 h-5 text-white/30 group-hover:text-cyan-400/60 group-hover:translate-x-1 transition-all ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gray-400 dark:text-white/30 group-hover:text-blue-500 dark:group-hover:text-cyan-400/60 group-hover:translate-x-1 transition-all ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>
@@ -231,21 +217,21 @@ export default function Home() {
       <section className="py-24 px-4">
         <div className="max-w-2xl mx-auto">
           <motion.div
-            className="p-10 rounded-3xl bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 border border-white/10 backdrop-blur-sm text-center"
+            className="p-10 rounded-3xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-cyan-500/10 dark:via-blue-500/10 dark:to-purple-500/10 border border-blue-100 dark:border-white/10 shadow-sm dark:backdrop-blur-sm text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Let&apos;s Connect
             </h2>
-            <p className="text-white/50 mb-8 max-w-md mx-auto">
+            <p className="text-gray-600 dark:text-white/50 mb-8 max-w-md mx-auto">
               {t.home.getInTouchDescription}
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-3.5 rounded-full bg-white/10 border border-white/20 text-white font-medium hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+              className="inline-flex items-center px-8 py-3.5 rounded-full bg-blue-600 dark:bg-white/10 border border-blue-600 dark:border-white/20 text-white dark:text-white font-medium hover:bg-blue-700 dark:hover:bg-white/15 dark:hover:border-white/30 transition-all duration-300"
             >
               {t.home.contactMe}
               <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

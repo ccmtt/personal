@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { PageTransitionProvider } from "@/components/PageTransition";
 import GeometricBackground from "@/components/GeometricBackground";
 import ParticleTrail from "@/components/ParticleTrail";
+import GlowCursor from "@/components/GlowCursor";
 
 export const metadata: Metadata = {
   title: "Chen Mingtao",
@@ -49,6 +50,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
         <GeometricBackground />
         <ParticleTrail />
+        <GlowCursor />
         <ThemeProvider>
           <LocaleProvider>
             <Navigation />

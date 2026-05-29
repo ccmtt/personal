@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { PageTransitionProvider } from "@/components/PageTransition";
 import GeometricBackground from "@/components/GeometricBackground";
+import ParticleTrail from "@/components/ParticleTrail";
 
 export const metadata: Metadata = {
   title: "Chen Mingtao",
@@ -47,6 +48,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
         <GeometricBackground />
+        <ParticleTrail />
         <ThemeProvider>
           <LocaleProvider>
             <Navigation />

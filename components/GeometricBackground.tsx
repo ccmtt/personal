@@ -127,76 +127,45 @@ export default function GeometricBackground() {
     );
   }
 
-  // Dark mode - Supabase-style cosmic aurora with gradient orbs
+  // Dark mode - subtle gradient background
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
       <div className="absolute inset-0 bg-gradient-to-b from-[#1f2937] via-[#111827] to-[#1f2937]" />
 
-      {/* Gradient orbs with multiple colors */}
-      {auroraOrbs.map((orb) => (
-        <div
-          key={orb.id}
-          className="absolute rounded-full"
-          style={{
-            left: `${orb.x}%`,
-            top: `${orb.y}%`,
-            width: orb.width,
-            height: orb.height,
-            background: `linear-gradient(180deg, ${orb.colors[0]} 0%, ${orb.colors[1]} 50%, ${orb.colors[2]} 100%)`,
-            filter: `blur(${orb.blur})`,
-            opacity: 0.25 + orb.id * 0.05,
-            transform: `translateX(-50%) translateY(${scrollY * orb.speed}px)`,
-          }}
-        />
-      ))}
-
-      {/* Radial glow overlay - Supabase style */}
+      {/* Subtle radial glow - very low opacity */}
       <div
-        className="absolute top-1/4 left-1/2 w-[600px] h-[400px] rounded-full"
+        className="absolute top-1/4 left-1/2 w-[800px] h-[500px] rounded-full"
         style={{
-          background: "radial-gradient(ellipse at center, #3b82f620 0%, transparent 70%)",
+          background: "radial-gradient(ellipse at center, #3b82f610 0%, transparent 70%)",
           transform: "translateX(-50%)",
+          filter: "blur(80px)",
+        }}
+      />
+
+      <div
+        className="absolute bottom-1/4 right-1/3 w-[600px] h-[400px] rounded-full"
+        style={{
+          background: "radial-gradient(ellipse at center, #8b5cf610 0%, transparent 70%)",
           filter: "blur(60px)",
         }}
       />
 
-      <div
-        className="absolute top-1/2 right-1/4 w-[400px] h-[300px] rounded-full"
-        style={{
-          background: "radial-gradient(ellipse at center, #8b5cf615 0%, transparent 70%)",
-          transform: "translateX(50%)",
-          filter: "blur(40px)",
-        }}
-      />
-
-      {/* Stars */}
-      {Array.from({ length: 80 }, (_, i) => (
+      {/* Stars - gentle glow, no flash */}
+      {Array.from({ length: 60 }, (_, i) => (
         <div
           key={`star-${i}`}
-          className="absolute rounded-full bg-white"
+          className="absolute rounded-full bg-white animate-pulse"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
             width: Math.random() * 2 + 1,
             height: Math.random() * 2 + 1,
-            opacity: Math.random() * 0.6 + 0.2,
-            animation: `twinkle-${i} ${2 + Math.random() * 4}s ease-in-out infinite`,
-            animationDelay: `${Math.random() * 5}s`,
+            opacity: Math.random() * 0.4 + 0.3,
+            animationDuration: `${3 + Math.random() * 4}s`,
+            animationDelay: `${Math.random() * 3}s`,
           }}
         />
       ))}
-
-      {/* Subtle grid lines */}
-      <div className="absolute top-1/4 left-1/4 w-32 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent rotate-45" />
-
-      <style jsx>{`
-        ${Array.from({ length: 80 }, (_, i) => `
-          @keyframes twinkle-${i} {
-            0%, 100% { opacity: ${Math.random() * 0.5 + 0.2}; transform: scale(1); }
-            50% { opacity: ${(Math.random() * 0.4 + 0.1)}; transform: scale(${Math.random() * 0.3 + 0.7}); }
-          }
-        `).join("")}
-      `}</style>
     </div>
   );
 }

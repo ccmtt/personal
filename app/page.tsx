@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { useLocale } from "@/i18n/LocaleContext";
+import { BlobShape, DotsCluster, PlusSigns, Mountains } from "@/components/HandDrawn";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -18,25 +19,24 @@ const itemVariants: Variants = {
 };
 
 const recentWritings = [
-  {
-    slug: "getting-started-with-nextjs",
-    title: "Getting Started with Next.js",
-    date: "2026-05-20",
-  },
-  {
-    slug: "typescript-best-practices",
-    title: "TypeScript Best Practices",
-    date: "2026-05-15",
-  },
+  { slug: "getting-started-with-nextjs", title: "Getting Started with Next.js", date: "2026-05-20" },
+  { slug: "typescript-best-practices", title: "TypeScript Best Practices", date: "2026-05-15" },
 ];
 
 export default function Home() {
   const { t } = useLocale();
 
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        {/* Decorative elements */}
+        <BlobShape className="absolute -top-20 -right-20 w-[400px] h-[400px] opacity-60 dark:opacity-30 animate-pulse" />
+        <BlobShape className="absolute -bottom-40 -left-40 w-[500px] h-[500px] opacity-40 dark:opacity-20" />
+        <DotsCluster className="absolute top-1/4 left-[5%] w-24 h-24 opacity-60 dark:opacity-40" />
+        <PlusSigns className="absolute bottom-1/4 right-[8%] w-20 h-20 opacity-50" />
+        <Mountains className="absolute bottom-0 left-0 right-0 h-32 opacity-30" />
+
         <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
           <motion.div
             className="space-y-10"
@@ -44,48 +44,40 @@ export default function Home() {
             animate="visible"
             variants={containerVariants}
           >
-            {/* Avatar */}
+            {/* Avatar with decorative ring */}
             <motion.div variants={itemVariants} className="flex justify-center">
               <div className="relative">
-                <div className="absolute inset-0 rounded-full border border-cyan-400/20 dark:border-cyan-400/20 animate-pulse" style={{ transform: "scale(1.3)" }} />
-                <div className="absolute inset-0 rounded-full border border-purple-400/15 dark:border-purple-400/15" style={{ transform: "scale(1.6)" }} />
-                <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 flex items-center justify-center text-white dark:text-white text-2xl font-bold shadow-[0_0_40px_rgba(0,212,170,0.3)] dark:shadow-[0_0_40px_rgba(0,212,170,0.3)]">
+                {/* Outer decorative ring */}
+                <div className="absolute inset-0 rounded-full border-2 border-dashed border-blue-300/30 dark:border-cyan-400/20" style={{ transform: "scale(1.4)" }} />
+                {/* Glow rings */}
+                <div className="absolute inset-0 rounded-full border border-cyan-400/20 dark:border-cyan-400/20 animate-ping" style={{ transform: "scale(1.25)", animationDuration: "3s" }} />
+                <div className="absolute inset-0 rounded-full border border-purple-400/15 dark:border-purple-400/15" style={{ transform: "scale(1.5)", animationDuration: "4s" }} />
+                {/* Avatar circle */}
+                <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-600 flex items-center justify-center text-white text-2xl font-bold shadow-xl">
                   CMT
                 </div>
               </div>
             </motion.div>
 
             {/* Main heading */}
-            <motion.h1
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
-              variants={itemVariants}
-            >
-              <span className="bg-gradient-to-r from-gray-900 via-blue-600 to-gray-900 dark:from-white dark:via-cyan-100 dark:to-white bg-clip-text text-transparent dark:bg-clip-text dark:text-transparent">
+            <motion.h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight" variants={itemVariants}>
+              <span className="bg-gradient-to-r from-gray-900 via-blue-600 to-gray-900 dark:from-white dark:via-cyan-100 dark:to-white bg-clip-text text-transparent">
                 {t.home.title}
               </span>
             </motion.h1>
 
             {/* Subtitle */}
-            <motion.p
-              className="text-xl sm:text-2xl text-gray-600 dark:text-white/70 font-light"
-              variants={itemVariants}
-            >
+            <motion.p className="text-xl sm:text-2xl text-gray-600 dark:text-white/70 font-light" variants={itemVariants}>
               {t.home.subtitle}
             </motion.p>
 
             {/* Description */}
-            <motion.p
-              className="text-base sm:text-lg text-gray-500 dark:text-white/50 max-w-lg mx-auto leading-relaxed"
-              variants={itemVariants}
-            >
+            <motion.p className="text-base sm:text-lg text-gray-500 dark:text-white/50 max-w-lg mx-auto leading-relaxed" variants={itemVariants}>
               {t.home.description}
             </motion.p>
 
             {/* CTA buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
-              variants={itemVariants}
-            >
+            <motion.div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4" variants={itemVariants}>
               <Link
                 href="/projects"
                 className="group px-8 py-3.5 rounded-full bg-blue-600 dark:bg-gradient-to-r dark:from-cyan-500/20 dark:via-blue-500/20 dark:to-purple-500/20 border border-blue-600 dark:border-white/20 text-white dark:text-white font-medium dark:backdrop-blur-sm hover:bg-blue-700 dark:hover:from-cyan-500/30 dark:hover:via-blue-500/30 dark:hover:to-purple-500/30 transition-all duration-300"
@@ -121,8 +113,9 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-24 px-4 bg-gray-50/50 dark:bg-transparent">
-        <div className="max-w-2xl mx-auto">
+      <section className="py-24 px-4 bg-gray-50/50 dark:bg-transparent relative">
+        <BlobShape className="absolute top-0 left-0 w-64 h-64 opacity-30 dark:opacity-20 -rotate-12" />
+        <div className="max-w-2xl mx-auto relative">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-sm font-medium uppercase tracking-widest text-gray-400 dark:text-white/40 mb-10 text-center">
               Featured Project
@@ -151,9 +144,7 @@ export default function Home() {
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-cyan-300/90 transition-colors">
                     {t.home.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-white/50 leading-relaxed">
-                    Personal Website
-                  </p>
+                  <p className="text-gray-600 dark:text-white/50 leading-relaxed">Personal Website</p>
                 </div>
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-purple-100 dark:from-cyan-500/20 dark:to-purple-500/20 border border-gray-200 dark:border-white/10 flex items-center justify-center group-hover:border-cyan-400/40 dark:group-hover:border-cyan-400/40 transition-all">
                   <svg className="w-5 h-5 text-blue-600 dark:text-cyan-400/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -174,17 +165,11 @@ export default function Home() {
       </section>
 
       {/* Recent Writing Section */}
-      <section className="py-24 px-4">
+      <section className="py-24 px-4 relative">
+        <DotsCluster className="absolute top-10 right-[5%] w-32 h-32 opacity-50" />
         <div className="max-w-2xl mx-auto">
-          <motion.div
-            className="flex items-center justify-between mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-sm font-medium uppercase tracking-widest text-gray-400 dark:text-white/40">
-              Recent Writing
-            </h2>
+          <motion.div className="flex items-center justify-between mb-10" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="text-sm font-medium uppercase tracking-widest text-gray-400 dark:text-white/40">Recent Writing</h2>
             <Link href="/writing" className="text-sm text-blue-600 dark:text-cyan-400/70 hover:text-blue-700 dark:hover:text-cyan-300 transition-colors">
               View all →
             </Link>
@@ -214,7 +199,8 @@ export default function Home() {
       </section>
 
       {/* Contact CTA Section */}
-      <section className="py-24 px-4">
+      <section className="py-24 px-4 relative">
+        <PlusSigns className="absolute -top-10 left-[10%] w-16 h-16 opacity-40" />
         <div className="max-w-2xl mx-auto">
           <motion.div
             className="p-10 rounded-3xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-cyan-500/10 dark:via-blue-500/10 dark:to-purple-500/10 border border-blue-100 dark:border-white/10 shadow-sm dark:backdrop-blur-sm text-center"
@@ -223,16 +209,9 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Let&apos;s Connect
-            </h2>
-            <p className="text-gray-600 dark:text-white/50 mb-8 max-w-md mx-auto">
-              {t.home.getInTouchDescription}
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center px-8 py-3.5 rounded-full bg-blue-600 dark:bg-white/10 border border-blue-600 dark:border-white/20 text-white dark:text-white font-medium hover:bg-blue-700 dark:hover:bg-white/15 dark:hover:border-white/30 transition-all duration-300"
-            >
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">Let&apos;s Connect</h2>
+            <p className="text-gray-600 dark:text-white/50 mb-8 max-w-md mx-auto">{t.home.getInTouchDescription}</p>
+            <Link href="/contact" className="inline-flex items-center px-8 py-3.5 rounded-full bg-blue-600 dark:bg-white/10 border border-blue-600 dark:border-white/20 text-white dark:text-white font-medium hover:bg-blue-700 dark:hover:bg-white/15 dark:hover:border-white/30 transition-all duration-300">
               {t.home.contactMe}
               <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />

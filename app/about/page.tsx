@@ -24,12 +24,12 @@ const itemVariants: Variants = {
 };
 
 const skills = [
-  { name: "Full-stack Web Development", level: 90 },
-  { name: "System Design & Architecture", level: 75 },
-  { name: "TypeScript / JavaScript", level: 95 },
-  { name: "React and Next.js", level: 92 },
-  { name: "Node.js Backend Services", level: 85 },
-  { name: "API Design & Integration", level: 88 },
+  "Full-stack Web Development",
+  "System Design & Architecture",
+  "TypeScript / JavaScript",
+  "React and Next.js",
+  "Node.js Backend Services",
+  "API Design & Integration",
 ];
 
 const whatIDoItems = [
@@ -144,7 +144,7 @@ export default function About() {
           </motion.div>
         </motion.section>
 
-        {/* Skills Section with Progress Bars */}
+        {/* Technical Skills */}
         <motion.section
           className="mb-12"
           initial="hidden"
@@ -157,29 +157,19 @@ export default function About() {
           >
             {t.about.technicalFocus}
           </motion.h2>
-
           <motion.div
-            className="space-y-4"
+            className="grid grid-cols-2 gap-4"
             variants={containerVariants}
           >
-            {skills.map((skill, index) => (
+            {skills.map((skill) => (
               <motion.div
-                key={skill.name}
-                className="p-4 rounded-xl bg-white dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 hover:border-blue-300 dark:hover:border-cyan-400/30 transition-all duration-300"
+                key={skill}
+                className="p-4 rounded-xl bg-white dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 hover:border-blue-300 dark:hover:border-cyan-400/30 transition-colors"
                 variants={itemVariants}
-                whileHover={{ x: 4 }}
               >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-gray-700 dark:text-white/90">{skill.name}</span>
-                  <span className="text-xs text-gray-400 dark:text-white/40">{skill.level}%</span>
-                </div>
-                <div className="h-2 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${skill.level}%` }}
-                    transition={{ duration: 0.8, delay: 0.3 + index * 0.1, ease: "easeOut" }}
-                  />
+                <div className="flex items-center text-gray-700 dark:text-gray-300 text-sm">
+                  <span className="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400 mr-3" />
+                  {skill}
                 </div>
               </motion.div>
             ))}

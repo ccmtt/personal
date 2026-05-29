@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useLocale } from "@/i18n/LocaleContext";
 
 export default function Projects() {

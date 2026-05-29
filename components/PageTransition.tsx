@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Transition } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -10,7 +10,7 @@ const pageVariants = {
   exit: { opacity: 0, y: -10 },
 };
 
-const pageTransition = {
+const pageTransition: Transition = {
   duration: 0.25,
   ease: "easeInOut",
 };

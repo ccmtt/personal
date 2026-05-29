@@ -9,17 +9,17 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="relative w-14 h-7 rounded-full bg-gray-900/50 border border-blue-500/30 hover:border-cyan-400/50 transition-colors"
+      className="relative w-14 h-7 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 transition-colors hover:border-blue-300"
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
     >
       <motion.span
-        className="absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 shadow-[0_0_10px_rgba(59,130,246,0.5)] flex items-center justify-center"
+        className="absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white dark:bg-gray-900 shadow-md flex items-center justify-center"
         layout
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         {theme === "light" ? (
           <svg
-            className="w-4 h-4 text-yellow-400"
+            className="w-4 h-4 text-yellow-500"
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -31,7 +31,7 @@ export default function ThemeToggle() {
           </svg>
         ) : (
           <svg
-            className="w-4 h-4 text-cyan-300"
+            className="w-4 h-4 text-blue-400"
             fill="currentColor"
             viewBox="0 0 20 20"
           >

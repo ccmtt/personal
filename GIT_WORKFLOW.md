@@ -276,6 +276,33 @@ git log --oneline --decorate -n 10
 git diff
 ```
 
-## 12. 最重要的一句话
+## 12. GitHub Token 认证问题
+
+如果 `git push` 遇到以下错误：
+
+```
+Permission denied
+fatal: Authentication failed for 'https://github.com/...'
+```
+
+**解决方案**：创建 GitHub Personal Access Token
+
+1. 去 https://github.com/settings/tokens
+2. **Generate new token (classic)**，不是 Fine-grained
+3. 勾选 `repo` 权限
+4. 把 token 嵌入远程 URL：
+
+```bash
+git remote set-url origin https://用户名:token@github.com/用户名/仓库名.git
+git push
+```
+
+示例：
+```bash
+git remote set-url origin https://ccmtt:ghp_xxxxx@github.com/ccmtt/personal.git
+git push
+```
+
+## 13. 最重要的一句话
 
 **任何时候，代码都应该能通过 Git 在另一台电脑上继续接上。**

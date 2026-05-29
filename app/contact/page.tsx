@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import { useLocale } from "@/i18n/LocaleContext";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { LargeBlob, CircleDecor, DotsCluster, StarDecor, PlusSigns } from "@/components/HandDrawn";
 
 const socialLinks = [
@@ -18,59 +18,47 @@ const socialLinks = [
     gradient: "from-gray-700 to-gray-900",
   },
   {
-    name: "Email",
-    username: "chenmingtao@example.com",
-    url: "mailto:chenmingtao@example.com",
+    name: "WeChat",
+    username: "chenmingtao",
+    url: "wechat://scan",
+    icon: (
+      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.697-.13c1.832.718 3.303 1.405 4.168 1.885.067.036.142.056.218.056.087 0 .174-.035.24-.102.134-.135.123-.349.02-.485-.382-.508-.776-1.129-.776-1.785 0-1.932 2.213-3.589 5.095-3.589 2.654 0 4.94 1.486 5.002 3.421.01.378-.112.742-.338 1.054-.15.207-.357.375-.58.503-.086.126-.102.295-.03.435l.725 1.377c.07.136.012.303-.123.398-.91.634-2.128.997-3.378.997-3.609 0-6.548-2.2-6.548-4.903 0-2.18 1.378-4.14 3.47-5.21-.574-1.432-.842-2.824-.842-4.225 0-4.054 3.47-7.347 7.757-7.347 4.12 0 7.46 3.006 7.757 6.853.01.201.01.403-.01.604-.018.151-.127.285-.261.336-1.064.407-2.15.67-3.265.79-.172.121-.364.177-.56.177-.214 0-.425-.063-.618-.182-.204-.126-.316-.332-.273-.56.274-1.454.411-2.94.411-4.453 0-8.575-7.313-15.514-16.317-15.514z"/>
+      </svg>
+    ),
+    gradient: "from-green-500 to-green-600",
+  },
+  {
+    name: "Phone",
+    username: "+86 138-0000-0000",
+    url: "tel:+8613800000000",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
       </svg>
     ),
     gradient: "from-blue-500 to-cyan-500",
-  },
-  {
-    name: "Twitter",
-    username: "@chenmingtao",
-    url: "https://twitter.com/chenmingtao",
-    icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-      </svg>
-    ),
-    gradient: "from-sky-500 to-blue-500",
   },
 ];
 
 const contactInfo = [
   {
-    title: "Open to Collaboration",
-    description: "Interested in freelance projects, full-time opportunities, or creative collaborations",
-    icon: "🤝",
-    color: "blue",
+    title: "WeChat Preferred",
+    description: "Add me on WeChat for quicker response. Usually reply within a few hours.",
+    icon: "💬",
+    color: "green",
   },
   {
-    title: "Quick Response",
-    description: "Usually respond within 24 hours. For urgent matters, reach out directly via email",
-    icon: "⚡",
-    color: "amber",
+    title: "Call Available",
+    description: "Available for calls during business hours. For urgent matters, text first.",
+    icon: "📱",
+    color: "blue",
   },
 ];
 
 export default function Contact() {
   const { t } = useLocale();
-  const [formState, setFormState] = useState({ name: "", email: "", message: "" });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-  };
 
   return (
     <div className="relative overflow-hidden">
@@ -158,77 +146,6 @@ export default function Contact() {
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Contact Form */}
-        <motion.form
-          className="mt-10 p-6 sm:p-8 rounded-2xl bg-white dark:bg-white/[0.08] border border-gray-200 dark:border-white/10 shadow-sm"
-          onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0, transition: { delay: 0.5 } }}
-        >
-          <div className="space-y-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-white/70 mb-2">Name</label>
-                <input
-                  type="text"
-                  required
-                  value={formState.name}
-                  onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-white/70 mb-2">Email</label>
-                <input
-                  type="email"
-                  required
-                  value={formState.email}
-                  onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300"
-                  placeholder="your@email.com"
-                />
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-white/70 mb-2">Message</label>
-              <textarea
-                required
-                rows={4}
-                value={formState.message}
-                onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 resize-none"
-                placeholder="Tell me about your project..."
-              />
-            </div>
-            <motion.button
-              type="submit"
-              disabled={isSubmitting || isSubmitted}
-              className={`relative w-full sm:w-auto px-8 py-4 rounded-xl font-medium text-white overflow-hidden transition-all duration-300 ${
-                isSubmitted
-                  ? "bg-green-500"
-                  : isSubmitting
-                  ? "bg-gray-400 cursor-wait"
-                  : "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:shadow-xl hover:shadow-blue-500/25"
-              }`}
-              whileHover={!isSubmitting && !isSubmitted ? { scale: 1.02 } : {}}
-              whileTap={!isSubmitting && !isSubmitted ? { scale: 0.98 } : {}}
-            >
-              <span className="relative z-10">
-                {isSubmitting ? "Sending..." : isSubmitted ? "✓ Message Sent!" : "Send Message"}
-              </span>
-              {!isSubmitting && !isSubmitted && (
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"
-                  initial={{ x: "100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              )}
-            </motion.button>
-          </div>
-        </motion.form>
       </div>
     </div>
   );

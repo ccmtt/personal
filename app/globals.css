@@ -1,5 +1,49 @@
 @import "tailwindcss";
 
+/* ========================================
+   CSS Variables - shadcn/ui style design system
+   ======================================== */
+@theme {
+  /* Border colors */
+  --color-border: #e5e7eb;
+  --color-border-dark: #374151;
+
+  /* Background */
+  --color-bg: #ffffff;
+  --color-bg-dark: #0a0a1a;
+
+  /* Muted colors */
+  --color-muted: #f3f4f6;
+  --color-muted-dark: #1f2937;
+
+  /* Primary colors */
+  --color-primary: #3b82f6;
+  --color-primary-dark: #60a5fa;
+
+  /* Secondary */
+  --color-secondary: #8b5cf6;
+  --color-secondary-dark: #a78bfa;
+
+  /* Accent */
+  --color-accent: #ec4899;
+  --color-accent-dark: #f472b6;
+
+  /* Destructive */
+  --color-destructive: #ef4444;
+  --color-destructive-dark: #f87171;
+
+  /* Success */
+  --color-success: #10b981;
+  --color-success-dark: #34d399;
+
+  /* Warning */
+  --color-warning: #f59e0b;
+  --color-warning-dark: #fbbf24;
+}
+
+/* ========================================
+   Global Styles
+   ======================================== */
 * {
   box-sizing: border-box;
 }
@@ -18,6 +62,9 @@ code, pre {
   font-family: 'JetBrains Mono', monospace;
 }
 
+/* ========================================
+   Selection Styles
+   ======================================== */
 ::selection {
   background-color: #dbeafe;
   color: #1e40af;
@@ -28,22 +75,18 @@ code, pre {
   color: #bfdbfe;
 }
 
+/* ========================================
+   Focus Styles
+   ======================================== */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.3s ease-out;
-}
-
-/* Custom scrollbar */
+/* ========================================
+   Custom Scrollbar
+   ======================================== */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -70,7 +113,230 @@ button:focus-visible {
   background: #4b5563;
 }
 
-/* Glass morphism utility */
+/* ========================================
+   Animation Keyframes
+   ======================================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px 10px rgba(59, 130, 246, 0.2);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-slower {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  75% {
+    transform: translateY(5px) rotate(-2deg);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   Animation Utilities
+   ======================================== */
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 0.4s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+.animate-slideInUp {
+  animation: slideInUp 0.3s ease-out forwards;
+}
+
+.animate-slideInDown {
+  animation: slideInDown 0.3s ease-out forwards;
+}
+
+.animate-bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-spin-slower {
+  animation: spin-slower 25s linear infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-dash {
+  animation: dash 1s linear infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ========================================
+   Glass Morphism Utility
+   ======================================== */
 .glass {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
@@ -81,10 +347,79 @@ button:focus-visible {
   background: rgba(17, 24, 39, 0.8);
 }
 
-/* Gradient text utility */
+/* ========================================
+   Gradient Text Utility
+   ======================================== */
 .gradient-text {
   background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* ========================================
+   Gradient Border Utility
+   ======================================== */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* ========================================
+   Hover Lift Effect
+   ======================================== */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   Card Hover Effect
+   ======================================== */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px -8px rgba(59, 130, 246, 0.2);
+}
+
+/* ========================================
+   Text Gradient Animation
+   ======================================== */
+.animate-text-gradient {
+  background-size: 200% 200%;
+  animation: text-gradient-shift 4s ease infinite;
+}
+
+@keyframes text-gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }

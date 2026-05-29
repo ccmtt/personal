@@ -8,6 +8,8 @@ import { PageTransitionProvider } from "@/components/PageTransition";
 import GeometricBackground from "@/components/GeometricBackground";
 import ParticleTrail from "@/components/ParticleTrail";
 import GlowCursor from "@/components/GlowCursor";
+import CursorSparkle from "@/components/CursorSparkle";
+import RippleEffect from "@/components/RippleEffect";
 
 export const metadata: Metadata = {
   title: "Chen Mingtao",
@@ -51,6 +53,8 @@ export default function RootLayout({
         <GeometricBackground />
         <ParticleTrail />
         <GlowCursor />
+        <CursorSparkle />
+        <RippleEffect />
         <ThemeProvider>
           <LocaleProvider>
             <Navigation />

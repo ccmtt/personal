@@ -31,14 +31,14 @@ export default function Writing() {
         animate="visible"
       >
         <motion.h1
-          className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900"
+          className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
           {t.writing.title}
         </motion.h1>
         <motion.p
-          className="mt-4 text-gray-600"
+          className="mt-4 text-gray-600 dark:text-white/60"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0, transition: { delay: 0.1 } }}
         >
@@ -47,29 +47,32 @@ export default function Writing() {
       </motion.section>
 
       <motion.div
-        className="mt-12 space-y-10"
+        className="mt-12 space-y-4"
         initial="hidden"
         animate="visible"
-        variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } } }}
       >
         {writings.map((writing) => (
           <motion.article
             key={writing.slug}
-            className="group border-b border-gray-100 pb-10 last:border-b-0 last:pb-0"
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }}
           >
-            <Link href={`/writing/${writing.slug}`}>
-              <h2 className="text-lg sm:text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                {writing.title}
-              </h2>
+            <Link href={`/writing/${writing.slug}`} className="group block p-6 rounded-xl bg-white dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 hover:border-blue-300 dark:hover:border-cyan-400/30 hover:bg-gray-50 dark:hover:bg-white/[0.08] transition-all duration-200">
+              <div className="flex items-start justify-between">
+                <div className="flex-1 min-w-0">
+                  <h2 className="text-base font-medium text-gray-900 dark:text-white/90 group-hover:text-blue-600 dark:group-hover:text-cyan-300/90">
+                    {writing.title}
+                  </h2>
+                  <p className="mt-1 text-sm text-gray-500 dark:text-white/40 leading-relaxed">{writing.excerpt}</p>
+                  <time className="inline-block mt-2 text-xs text-gray-400 dark:text-white/40 font-mono">
+                    {writing.date}
+                  </time>
+                </div>
+                <svg className="w-5 h-5 text-gray-400 dark:text-white/30 group-hover:text-blue-500 dark:group-hover:text-cyan-400/60 group-hover:translate-x-1 transition-all ml-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
             </Link>
-            <p className="mt-2 text-gray-600 leading-relaxed">{writing.excerpt}</p>
-            <time className="inline-block mt-3 text-sm text-gray-400 font-mono">
-              {writing.date}
-            </time>
           </motion.article>
         ))}
       </motion.div>

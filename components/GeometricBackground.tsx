@@ -130,7 +130,7 @@ export default function GeometricBackground() {
   // Dark mode - Supabase-style cosmic aurora with gradient orbs
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#0d0d24] to-[#151530]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1f2937] via-[#111827] to-[#1f2937]" />
 
       {/* Gradient orbs with multiple colors */}
       {auroraOrbs.map((orb) => (

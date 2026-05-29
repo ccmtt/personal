@@ -19,19 +19,17 @@ const socialLinks = [
   },
   {
     name: "WeChat",
-    username: "chenmingtao",
-    url: "wechat://scan",
+    username: "15051113629",
+    url: "",
     icon: (
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.697-.13c1.832.718 3.303 1.405 4.168 1.885.067.036.142.056.218.056.087 0 .174-.035.24-.102.134-.135.123-.349.02-.485-.382-.508-.776-1.129-.776-1.785 0-1.932 2.213-3.589 5.095-3.589 2.654 0 4.94 1.486 5.002 3.421.01.378-.112.742-.338 1.054-.15.207-.357.375-.58.503-.086.126-.102.295-.03.435l.725 1.377c.07.136.012.303-.123.398-.91.634-2.128.997-3.378.997-3.609 0-6.548-2.2-6.548-4.903 0-2.18 1.378-4.14 3.47-5.21-.574-1.432-.842-2.824-.842-4.225 0-4.054 3.47-7.347 7.757-7.347 4.12 0 7.46 3.006 7.757 6.853.01.201.01.403-.01.604-.018.151-.127.285-.261.336-1.064.407-2.15.67-3.265.79-.172.121-.364.177-.56.177-.214 0-.425-.063-.618-.182-.204-.126-.316-.332-.273-.56.274-1.454.411-2.94.411-4.453 0-8.575-7.313-15.514-16.317-15.514z"/>
-      </svg>
+      <img src="/wechat.svg" className="w-6 h-6" alt="WeChat" />
     ),
     gradient: "from-green-500 to-green-600",
   },
   {
     name: "Phone",
-    username: "+86 138-0000-0000",
-    url: "tel:+8613800000000",
+    username: "15051113629",
+    url: "tel:+8615051113629",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
@@ -100,17 +98,19 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
         >
           {socialLinks.map((social, index) => (
-            <motion.a
+            <motion.div
               key={social.name}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative p-6 rounded-2xl bg-white dark:bg-white/[0.08] border border-gray-200 dark:border-white/10 hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300 dark:hover:border-cyan-400/30 transition-all duration-300 overflow-hidden"
+              className={`group relative p-6 rounded-2xl bg-white dark:bg-white/[0.08] border border-gray-200 dark:border-white/10 hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-300 dark:hover:border-cyan-400/30 transition-all duration-300 overflow-hidden ${social.url ? 'cursor-pointer' : ''}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0, transition: { delay: 0.2 + index * 0.1 } }}
-              whileHover={{ y: -4 }}
+              whileHover={social.url ? { y: -4 } : {}}
               onMouseEnter={() => setHoveredSocial(social.name)}
               onMouseLeave={() => setHoveredSocial(null)}
+              onClick={() => {
+                if (social.name === 'WeChat') {
+                  navigator.clipboard.writeText(social.username);
+                }
+              }}
             >
               {/* Gradient overlay on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${social.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
@@ -122,7 +122,7 @@ export default function Contact() {
                 <div className="text-sm font-medium text-gray-500 dark:text-white/40">{social.name}</div>
                 <div className="text-base font-medium text-gray-900 dark:text-white mt-1">{social.username}</div>
               </div>
-            </motion.a>
+            </motion.div>
           ))}
         </motion.div>
 

@@ -7,19 +7,17 @@ export default function Footer() {
   const { t } = useLocale();
 
   return (
-    <footer className="border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-2xl mx-auto px-4 py-8 text-center">
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+    <footer className="border-t border-white/5 bg-[#0a0a1a]/50">
+      <div className="max-w-2xl mx-auto px-4 py-10 text-center">
+        <p className="text-sm text-white/40">
           {t.footer.builtBy}{" "}
-          <span className="font-medium text-gray-900 dark:text-gray-200">
-            Chen Mingtao
-          </span>
+          <span className="font-medium text-white/60">Chen Mingtao</span>
         </p>
-        <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
+        <p className="text-xs text-white/30 mt-3">
           {t.footer.viewSource}{" "}
           <Link
             href="https://github.com/ccmtt/personal"
-            className="text-blue-600 dark:text-blue-400 hover:underline"
+            className="text-cyan-400/50 hover:text-cyan-300/70 transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >

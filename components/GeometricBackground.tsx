@@ -1,118 +1,111 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
-interface Shape {
+interface Star {
   id: number;
   x: number;
   y: number;
   size: number;
-  rotation: number;
+  opacity: number;
   duration: number;
   delay: number;
-  type: "circle" | "square" | "triangle";
 }
 
 export default function GeometricBackground() {
-  const [shapes, setShapes] = useState<Shape[]>([]);
   const [mounted, setMounted] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
-  useEffect(() => {
-    setMounted(true);
-    const generatedShapes: Shape[] = Array.from({ length: 12 }, (_, i) => ({
+  const stars = useMemo<Star[]>(() => {
+    return Array.from({ length: 80 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: 20 + Math.random() * 60,
-      rotation: Math.random() * 360,
-      duration: 15 + Math.random() * 20,
-      delay: Math.random() * 10,
-      type: ["circle", "square", "triangle"][Math.floor(Math.random() * 3)] as Shape["type"],
+      size: Math.random() * 2 + 1,
+      opacity: Math.random() * 0.5 + 0.3,
+      duration: 2 + Math.random() * 3,
+      delay: Math.random() * 5,
     }));
-    setShapes(generatedShapes);
+  }, []);
+
+  useEffect(() => {
+    setMounted(true);
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   if (!mounted) return null;
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      {/* Gradient base */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900" />
+      {/* Deep space gradient base */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#0d0d24] to-[#151530]" />
 
-      {/* Floating shapes */}
-      {shapes.map((shape) => (
-        <div
-          key={shape.id}
-          className="absolute"
-          style={{
-            left: `${shape.x}%`,
-            top: `${shape.y}%`,
-            animation: `float-${shape.id} ${shape.duration}s ease-in-out infinite`,
-            animationDelay: `${shape.delay}s`,
-          }}
-        >
-          {shape.type === "circle" && (
-            <div
-              className="rounded-full bg-gradient-to-br from-blue-400/10 to-purple-400/10 dark:from-blue-500/5 dark:to-purple-500/5 backdrop-blur-sm"
-              style={{
-                width: shape.size,
-                height: shape.size,
-                animation: `rotate ${shape.duration * 0.5}s linear infinite`,
-              }}
-            />
-          )}
-          {shape.type === "square" && (
-            <div
-              className="bg-gradient-to-br from-cyan-400/10 to-blue-400/10 dark:from-cyan-500/5 dark:to-blue-500/5 backdrop-blur-sm"
-              style={{
-                width: shape.size,
-                height: shape.size,
-                transform: `rotate(${shape.rotation}deg)`,
-                animation: `rotate ${shape.duration * 0.3}s linear infinite`,
-              }}
-            />
-          )}
-          {shape.type === "triangle" && (
-            <div
-              className="w-0 h-0"
-              style={{
-                borderLeft: `${shape.size / 2}px solid transparent`,
-                borderRight: `${shape.size / 2}px solid transparent`,
-                borderBottom: `${shape.size}px solid rgba(139, 92, 246, 0.1)`,
-                animation: `rotate ${shape.duration * 0.4}s linear infinite`,
-              }}
-            />
-          )}
-        </div>
-      ))}
-
-      {/* Grid pattern */}
+      {/* Aurora gradient layers */}
       <div
-        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
+        className="absolute top-0 left-1/4 w-[800px] h-[600px] rounded-full opacity-30 blur-[120px]"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
-          backgroundSize: "40px 40px",
+          background: "linear-gradient(180deg, #00d4aa 0%, #1e40af 50%, #7c3aed 100%)",
+          transform: `translateX(-50%) translateY(${scrollY * 0.15}px)`,
+        }}
+      />
+      <div
+        className="absolute top-0 right-1/4 w-[600px] h-[500px] rounded-full opacity-25 blur-[100px]"
+        style={{
+          background: "linear-gradient(180deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%)",
+          transform: `translateX(50%) translateY(${scrollY * 0.1}px)`,
+        }}
+      />
+      <div
+        className="absolute top-20 left-1/2 w-[400px] h-[300px] rounded-full opacity-20 blur-[80px]"
+        style={{
+          background: "linear-gradient(180deg, #06b6d4 0%, #22d3ee 100%)",
+          transform: `translateX(-50%) translateY(${scrollY * 0.08}px)`,
         }}
       />
 
-      {/* CSS animations */}
+      {/* Twinkling stars */}
+      {stars.map((star) => (
+        <div
+          key={star.id}
+          className="absolute rounded-full bg-white"
+          style={{
+            left: `${star.x}%`,
+            top: `${star.y}%`,
+            width: star.size,
+            height: star.size,
+            opacity: star.opacity,
+            animation: `twinkle-${star.id} ${star.duration}s ease-in-out infinite`,
+            animationDelay: `${star.delay}s`,
+          }}
+        />
+      ))}
+
+      {/* Subtle star streaks */}
+      <div className="absolute top-1/4 left-1/4 w-32 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent rotate-45" />
+      <div className="absolute top-1/3 right-1/3 w-24 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent -rotate-30" />
+      <div className="absolute bottom-1/3 left-1/2 w-20 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent rotate-15" />
+
+      {/* Constellation dots */}
+      <div className="absolute top-[15%] right-[20%] flex gap-2">
+        <div className="w-1 h-1 rounded-full bg-white/60" />
+        <div className="w-1 h-1 rounded-full bg-white/40 mt-2" />
+        <div className="w-1 h-1 rounded-full bg-white/60 mt-4" />
+      </div>
+      <div className="absolute top-[30%] left-[15%] flex gap-2">
+        <div className="w-1.5 h-1.5 rounded-full bg-white/50" />
+        <div className="w-1 h-1 rounded-full bg-white/30 mt-3 ml-1" />
+        <div className="w-1 h-1 rounded-full bg-white/40 mt-1 ml-2" />
+      </div>
+
       <style jsx>{`
-        ${shapes
+        ${stars
           .map(
-            (shape) => `
-          @keyframes float-${shape.id} {
-            0%, 100% {
-              transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-              transform: translate(${Math.sin(shape.id) * 30}px, ${Math.cos(shape.id) * 20}px) rotate(90deg);
-            }
-            50% {
-              transform: translate(${Math.cos(shape.id) * 20}px, ${Math.sin(shape.id) * 30}px) rotate(180deg);
-            }
-            75% {
-              transform: translate(${Math.sin(shape.id) * -20}px, ${Math.cos(shape.id) * -20}px) rotate(270deg);
-            }
+            (star) => `
+          @keyframes twinkle-${star.id} {
+            0%, 100% { opacity: ${star.opacity}; transform: scale(1); }
+            50% { opacity: ${star.opacity * 0.3}; transform: scale(0.8); }
           }
         `
           )

@@ -20,7 +20,7 @@ export default function Navigation() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 glass border-b border-gray-200 dark:border-gray-800">
+    <header className="sticky top-0 z-50 bg-[#0a0a1a]/80 backdrop-blur-xl border-b border-white/5">
       <nav className="max-w-2xl mx-auto flex items-center justify-between gap-6 p-4">
         <div className="flex gap-6">
           {navLinks.map((link) => {
@@ -31,15 +31,15 @@ export default function Navigation() {
                 href={link.href}
                 className={`relative text-sm font-medium transition-colors ${
                   isActive
-                    ? "text-blue-600 dark:text-blue-400"
-                    : "text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                    ? "text-cyan-300"
+                    : "text-white/50 hover:text-white/80"
                 }`}
               >
                 {link.label}
                 {isActive && (
                   <motion.div
                     layoutId="nav-indicator"
-                    className="absolute -bottom-[17px] left-0 right-0 h-[2px] bg-blue-600 dark:bg-blue-400"
+                    className="absolute -bottom-[17px] left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-400"
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   />
                 )}
